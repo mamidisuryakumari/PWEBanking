@@ -1,0 +1,71 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - list [ref=e3]:
+      - link " e-Banking" [ref=e4] [cursor=pointer]:
+        - /url: dashboard.php
+        - generic [ref=e6]: 
+        - generic [ref=e7]: e-Banking
+      - separator [ref=e8]
+      - listitem [ref=e9]:
+        - link " Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: dashboard.php
+          - generic [ref=e11]: 
+          - text: Dashboard
+      - separator [ref=e12]
+      - generic [ref=e13]: Interface
+      - listitem [ref=e14]:
+        - link " Account Openning" [ref=e15] [cursor=pointer]:
+          - /url: account-opening-form.php
+          - generic [ref=e16]: 
+          - text: Account Openning
+      - listitem [ref=e17]:
+        - link " Payee / Beneficiary " [expanded] [ref=e18] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e19]: 
+          - text: Payee / Beneficiary 
+      - listitem [ref=e20]:
+        - link " Transaction History" [ref=e21] [cursor=pointer]:
+          - /url: txn-history.php
+          - generic [ref=e22]: 
+          - text: Transaction History
+      - listitem [ref=e23]:
+        - link " Report" [ref=e24] [cursor=pointer]:
+          - /url: report.php
+          - generic [ref=e25]: 
+          - text: Report
+      - separator [ref=e26]
+      - button "" [ref=e28] [cursor=pointer]
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - navigation [ref=e31]:
+          - text: 
+          - list [ref=e32]:
+            - listitem [ref=e34]:
+              - button "Automation User" [ref=e35] [cursor=pointer]:
+                - generic [ref=e36]: Automation User
+                - img [ref=e37]
+              - text:   
+        - generic [ref=e38]:
+          - heading "Add Payee / beneficiary" [level=3] [ref=e39]
+          - generic [ref=e42]:
+            - heading "Payee / Beneficiary" [level=6] [ref=e44]
+            - generic [ref=e46]:
+              - generic [ref=e47]:
+                - generic [ref=e48]: Account Number
+                - textbox [ref=e49]
+              - generic [ref=e50]:
+                - generic [ref=e51]: Confirm Account Number
+                - textbox [ref=e52]
+              - generic [ref=e53]:
+                - generic [ref=e54]: Account Holder Name
+                - textbox [ref=e55]
+              - separator [ref=e56]
+              - button "Submit" [ref=e57] [cursor=pointer]
+              - separator [ref=e58]
+      - contentinfo [ref=e59]:
+        - generic [ref=e61]: e-banking System
+  - text: 
+```

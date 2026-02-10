@@ -1,0 +1,110 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - list [ref=e3]:
+      - link " e-Banking" [ref=e4] [cursor=pointer]:
+        - /url: dashboard.php
+        - generic [ref=e6]: 
+        - generic [ref=e7]: e-Banking
+      - separator [ref=e8]
+      - listitem [ref=e9]:
+        - link " Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: dashboard.php
+          - generic [ref=e11]: 
+          - text: Dashboard
+      - separator [ref=e12]
+      - generic [ref=e13]: Interface
+      - listitem [ref=e14]:
+        - link " Cashier " [expanded] [ref=e15] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e16]: 
+          - text: Cashier 
+      - listitem [ref=e17]:
+        - link " Account Approval " [expanded] [active] [ref=e18] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e19]: 
+          - text: Account Approval 
+        - generic [ref=e21]:
+          - link "New Request" [ref=e22] [cursor=pointer]:
+            - /url: new-request.php
+          - link "Approved Request" [ref=e23] [cursor=pointer]:
+            - /url: approved-request.php
+          - link "Rejected Request" [ref=e24] [cursor=pointer]:
+            - /url: rejected-request.php
+          - link "All Request" [ref=e25] [cursor=pointer]:
+            - /url: all-request.php
+      - listitem [ref=e26]:
+        - link " Search Account" [ref=e27] [cursor=pointer]:
+          - /url: search.php
+          - generic [ref=e28]: 
+          - text: Search Account
+      - listitem [ref=e29]:
+        - link " Report " [expanded] [ref=e30] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e31]: 
+          - text: Report 
+      - separator [ref=e32]
+      - button "" [ref=e34] [cursor=pointer]
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - navigation [ref=e37]:
+          - text: 
+          - list [ref=e38]:
+            - text:  
+            - listitem [ref=e39]:
+              - button " 6" [ref=e40] [cursor=pointer]:
+                - generic [ref=e41]: 
+                - generic [ref=e42]: "6"
+              - text:      
+            - listitem [ref=e44]:
+              - button "Admin Test" [ref=e45] [cursor=pointer]:
+                - generic [ref=e46]: Admin Test
+                - img [ref=e47]
+              - text:   
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - heading "Dashboard" [level=1] [ref=e50]
+            - link " Generate Txn Report" [ref=e51] [cursor=pointer]:
+              - /url: txn-report.php
+              - generic [ref=e52]: 
+              - text: Generate Txn Report
+          - generic [ref=e53]:
+            - link "Account Holder 34 " [ref=e55] [cursor=pointer]:
+              - /url: approved-request.php
+              - generic [ref=e58]:
+                - generic [ref=e59]:
+                  - generic [ref=e60]: Account Holder
+                  - generic [ref=e61]: "34"
+                - generic [ref=e63]: 
+            - link "New Account Requests 6 " [ref=e65] [cursor=pointer]:
+              - /url: new-request.php
+              - generic [ref=e68]:
+                - generic [ref=e69]:
+                  - generic [ref=e70]: New Account Requests
+                  - generic [ref=e71]: "6"
+                - generic [ref=e73]: 
+            - link "Rejected Account Requests 4 " [ref=e75] [cursor=pointer]:
+              - /url: rejected-request.php
+              - generic [ref=e78]:
+                - generic [ref=e79]:
+                  - generic [ref=e80]: Rejected Account Requests
+                  - generic [ref=e83]: "4"
+                - generic [ref=e85]: 
+            - link "Cashiers 2 " [ref=e87] [cursor=pointer]:
+              - /url: manage-cashier.php
+              - generic [ref=e90]:
+                - generic [ref=e91]:
+                  - generic [ref=e92]: Cashiers
+                  - generic [ref=e95]: "2"
+                - generic [ref=e97]: 
+            - generic [ref=e101]:
+              - generic [ref=e102]:
+                - generic [ref=e103]: Total Deposit Amount
+                - generic [ref=e106]: "439970"
+              - generic [ref=e108]: 
+      - contentinfo [ref=e109]:
+        - generic [ref=e111]: e-Banking | Admin Panel
+  - text: 
+```

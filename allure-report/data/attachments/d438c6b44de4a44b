@@ -1,0 +1,175 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - list [ref=e3]:
+      - link " e-Banking" [ref=e4] [cursor=pointer]:
+        - /url: dashboard.php
+        - generic [ref=e6]: 
+        - generic [ref=e7]: e-Banking
+      - separator [ref=e8]
+      - listitem [ref=e9]:
+        - link " Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: dashboard.php
+          - generic [ref=e11]: 
+          - text: Dashboard
+      - separator [ref=e12]
+      - generic [ref=e13]: Interface
+      - listitem [ref=e14]:
+        - link " Cashier " [expanded] [ref=e15] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e16]: 
+          - text: Cashier 
+      - listitem [ref=e17]:
+        - link " Account Approval " [expanded] [ref=e18] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e19]: 
+          - text: Account Approval 
+      - listitem [ref=e20]:
+        - link " Search Account" [ref=e21] [cursor=pointer]:
+          - /url: search.php
+          - generic [ref=e22]: 
+          - text: Search Account
+      - listitem [ref=e23]:
+        - link " Report " [expanded] [ref=e24] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e25]: 
+          - text: Report 
+      - separator [ref=e26]
+      - button "" [ref=e28] [cursor=pointer]
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - navigation [ref=e31]:
+          - text: 
+          - list [ref=e32]:
+            - text:  
+            - listitem [ref=e33]:
+              - button " 6" [ref=e34] [cursor=pointer]:
+                - generic [ref=e35]: 
+                - generic [ref=e36]: "6"
+              - text:      
+            - listitem [ref=e38]:
+              - button "Admin Test" [ref=e39] [cursor=pointer]:
+                - generic [ref=e40]: Admin Test
+                - img [ref=e41]
+              - text:   
+        - generic [ref=e42]:
+          - heading "New Account Opening Requests" [level=1] [ref=e43]
+          - generic [ref=e44]:
+            - heading "Details" [level=6] [ref=e46]
+            - generic [ref=e49]:
+              - generic [ref=e50]:
+                - generic [ref=e53]:
+                  - text: Show
+                  - combobox "Show entries" [ref=e54]:
+                    - option "10" [selected]
+                    - option "25"
+                    - option "50"
+                    - option "100"
+                  - text: entries
+                - generic [ref=e57]:
+                  - text: "Search:"
+                  - searchbox "Search:" [ref=e58]
+              - grid [ref=e61]:
+                - rowgroup [ref=e62]:
+                  - 'row "S.No: activate to sort column descending Name: activate to sort column ascending Mobile Number: activate to sort column ascending Email: activate to sort column ascending Apply Date: activate to sort column ascending Status: activate to sort column ascending Action: activate to sort column ascending" [ref=e63]':
+                    - 'columnheader "S.No: activate to sort column descending" [ref=e64] [cursor=pointer]': ↑ S.No ↓
+                    - 'columnheader "Name: activate to sort column ascending" [ref=e65] [cursor=pointer]': ↑ Name ↓
+                    - 'columnheader "Mobile Number: activate to sort column ascending" [ref=e66] [cursor=pointer]': ↑ Mobile Number ↓
+                    - 'columnheader "Email: activate to sort column ascending" [ref=e67] [cursor=pointer]': ↑ Email ↓
+                    - 'columnheader "Apply Date: activate to sort column ascending" [ref=e68] [cursor=pointer]': ↑ Apply Date ↓
+                    - 'columnheader "Status: activate to sort column ascending" [ref=e69] [cursor=pointer]': ↑ Status ↓
+                    - 'columnheader "Action: activate to sort column ascending" [ref=e70] [cursor=pointer]': ↑ Action ↓
+                - rowgroup [ref=e71]:
+                  - row "S.No Name Mobile Number Email Apply Date Status Action" [ref=e72]:
+                    - columnheader "S.No" [ref=e73]
+                    - columnheader "Name" [ref=e74]
+                    - columnheader "Mobile Number" [ref=e75]
+                    - columnheader "Email" [ref=e76]
+                    - columnheader "Apply Date" [ref=e77]
+                    - columnheader "Status" [ref=e78]
+                    - columnheader "Action" [ref=e79]
+                - rowgroup [ref=e80]:
+                  - row "1 user_555e0f yajjuvarapu 9000086190 user_a13188@gmail.com 2025-06-21 11:39:51 New Request View" [ref=e81]:
+                    - gridcell "1" [ref=e82]
+                    - gridcell "user_555e0f yajjuvarapu" [ref=e83]
+                    - gridcell "9000086190" [ref=e84]
+                    - gridcell "user_a13188@gmail.com" [ref=e85]
+                    - gridcell "2025-06-21 11:39:51" [ref=e86]
+                    - gridcell "New Request" [ref=e87]:
+                      - generic [ref=e88]: New Request
+                    - gridcell "View" [ref=e89]:
+                      - link "View" [ref=e90] [cursor=pointer]:
+                        - /url: view-request-details.php?userid=60&&viewid=37
+                  - row "2 user_0de260 yajjuvarapu 9000086190 user_ff7da8@gmail.com 2025-06-23 10:31:30 New Request View" [ref=e91]:
+                    - gridcell "2" [ref=e92]
+                    - gridcell "user_0de260 yajjuvarapu" [ref=e93]
+                    - gridcell "9000086190" [ref=e94]
+                    - gridcell "user_ff7da8@gmail.com" [ref=e95]
+                    - gridcell "2025-06-23 10:31:30" [ref=e96]
+                    - gridcell "New Request" [ref=e97]:
+                      - generic [ref=e98]: New Request
+                    - gridcell "View" [ref=e99]:
+                      - link "View" [ref=e100] [cursor=pointer]:
+                        - /url: view-request-details.php?userid=64&&viewid=38
+                  - row "3 user_4d5e4d yajjuvarapu 9000086190 user_1b3637@gmail.com 2025-06-23 10:45:43 New Request View" [ref=e101]:
+                    - gridcell "3" [ref=e102]
+                    - gridcell "user_4d5e4d yajjuvarapu" [ref=e103]
+                    - gridcell "9000086190" [ref=e104]
+                    - gridcell "user_1b3637@gmail.com" [ref=e105]
+                    - gridcell "2025-06-23 10:45:43" [ref=e106]
+                    - gridcell "New Request" [ref=e107]:
+                      - generic [ref=e108]: New Request
+                    - gridcell "View" [ref=e109]:
+                      - link "View" [ref=e110] [cursor=pointer]:
+                        - /url: view-request-details.php?userid=65&&viewid=39
+                  - row "4 user_3eac9d yajjuvarapu 9000086190 user_62d070@gmail.com 2025-06-23 22:20:56 New Request View" [ref=e111]:
+                    - gridcell "4" [ref=e112]
+                    - gridcell "user_3eac9d yajjuvarapu" [ref=e113]
+                    - gridcell "9000086190" [ref=e114]
+                    - gridcell "user_62d070@gmail.com" [ref=e115]
+                    - gridcell "2025-06-23 22:20:56" [ref=e116]
+                    - gridcell "New Request" [ref=e117]:
+                      - generic [ref=e118]: New Request
+                    - gridcell "View" [ref=e119]:
+                      - link "View" [ref=e120] [cursor=pointer]:
+                        - /url: view-request-details.php?userid=66&&viewid=40
+                  - row "5 user_c2d8f3 yajjuvarapu 9000086190 user_cb7f59@gmail.com 2025-06-23 22:26:08 New Request View" [ref=e121]:
+                    - gridcell "5" [ref=e122]
+                    - gridcell "user_c2d8f3 yajjuvarapu" [ref=e123]
+                    - gridcell "9000086190" [ref=e124]
+                    - gridcell "user_cb7f59@gmail.com" [ref=e125]
+                    - gridcell "2025-06-23 22:26:08" [ref=e126]
+                    - gridcell "New Request" [ref=e127]:
+                      - generic [ref=e128]: New Request
+                    - gridcell "View" [ref=e129]:
+                      - link "View" [ref=e130] [cursor=pointer]:
+                        - /url: view-request-details.php?userid=67&&viewid=41
+                  - row "6 Surya123414 M 9876543210 surya1245937@gmail.com 2025-12-18 12:33:14 New Request View" [ref=e131]:
+                    - gridcell "6" [ref=e132]
+                    - gridcell "Surya123414 M" [ref=e133]
+                    - gridcell "9876543210" [ref=e134]
+                    - gridcell "surya1245937@gmail.com" [ref=e135]
+                    - gridcell "2025-12-18 12:33:14" [ref=e136]
+                    - gridcell "New Request" [ref=e137]:
+                      - generic [ref=e138]: New Request
+                    - gridcell "View" [ref=e139]:
+                      - link "View" [ref=e140] [cursor=pointer]:
+                        - /url: view-request-details.php?userid=140&&viewid=44
+              - generic [ref=e141]:
+                - status [ref=e143]: Showing 1 to 6 of 6 entries
+                - list [ref=e146]:
+                  - listitem [ref=e147]:
+                    - link "Previous":
+                      - /url: "#"
+                  - listitem [ref=e148]:
+                    - link "1" [ref=e149] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=e150]:
+                    - link "Next":
+                      - /url: "#"
+      - contentinfo [ref=e151]:
+        - generic [ref=e153]: e-Banking | Admin Panel
+  - text: 
+```

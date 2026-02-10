@@ -1,0 +1,4 @@
+Attempt 1/3 failed to handle alert: page.waitForEvent: Test ended.
+=========================== logs ===========================
+waiting for event "dialog"
+============================================================

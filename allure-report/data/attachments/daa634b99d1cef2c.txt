@@ -1,0 +1,3 @@
+Before click
+After click
+Dialog appeared: Email-id already exist. Please try again

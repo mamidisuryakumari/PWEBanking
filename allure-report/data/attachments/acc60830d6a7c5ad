@@ -1,0 +1,233 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - list [ref=e3]:
+      - link " e-Banking" [ref=e4] [cursor=pointer]:
+        - /url: dashboard.php
+        - generic [ref=e6]: 
+        - generic [ref=e7]: e-Banking
+      - separator [ref=e8]
+      - listitem [ref=e9]:
+        - link " Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: dashboard.php
+          - generic [ref=e11]: 
+          - text: Dashboard
+      - separator [ref=e12]
+      - generic [ref=e13]: Interface
+      - listitem [ref=e14]:
+        - link " Account Holders" [ref=e15] [cursor=pointer]:
+          - /url: approved-accounts.php
+          - generic [ref=e16]: 
+          - text: Account Holders
+      - listitem [ref=e17]:
+        - link " Search Account" [ref=e18] [cursor=pointer]:
+          - /url: search.php
+          - generic [ref=e19]: 
+          - text: Search Account
+      - listitem [ref=e20]:
+        - link " Report " [expanded] [ref=e21] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e22]: 
+          - text: Report 
+      - separator [ref=e23]
+      - button "" [ref=e25] [cursor=pointer]
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - navigation [ref=e28]:
+          - text: 
+          - list [ref=e29]:
+            - text: 
+            - listitem [ref=e31]:
+              - button "cashier cashier" [ref=e32] [cursor=pointer]:
+                - generic [ref=e33]: cashier cashier
+                - img [ref=e34]
+              - text:   
+        - generic [ref=e35]:
+          - heading "Details of Account Holders" [level=1] [ref=e36]
+          - generic [ref=e37]:
+            - heading "View Details of Account Holders" [level=6] [ref=e39]
+            - generic [ref=e42]:
+              - generic [ref=e43]:
+                - generic [ref=e46]:
+                  - text: Show
+                  - combobox "Show entries" [ref=e47]:
+                    - option "10" [selected]
+                    - option "25"
+                    - option "50"
+                    - option "100"
+                  - text: entries
+                - generic [ref=e50]:
+                  - text: "Search:"
+                  - searchbox "Search:" [ref=e51]
+              - grid [ref=e54]:
+                - rowgroup [ref=e55]:
+                  - 'row "S.No: activate to sort column descending Name: activate to sort column ascending Mobile Number: activate to sort column ascending Email: activate to sort column ascending Account Number: activate to sort column ascending Account Userid Number: activate to sort column ascending Status: activate to sort column ascending Action: activate to sort column ascending" [ref=e56]':
+                    - 'columnheader "S.No: activate to sort column descending" [ref=e57] [cursor=pointer]': ↑ S.No ↓
+                    - 'columnheader "Name: activate to sort column ascending" [ref=e58] [cursor=pointer]': ↑ Name ↓
+                    - 'columnheader "Mobile Number: activate to sort column ascending" [ref=e59] [cursor=pointer]': ↑ Mobile Number ↓
+                    - 'columnheader "Email: activate to sort column ascending" [ref=e60] [cursor=pointer]': ↑ Email ↓
+                    - 'columnheader "Account Number: activate to sort column ascending" [ref=e61] [cursor=pointer]': ↑ Account Number ↓
+                    - 'columnheader "Account Userid Number: activate to sort column ascending" [ref=e62] [cursor=pointer]': ↑ Account Userid Number ↓
+                    - 'columnheader "Status: activate to sort column ascending" [ref=e63] [cursor=pointer]': ↑ Status ↓
+                    - 'columnheader "Action: activate to sort column ascending" [ref=e64] [cursor=pointer]': ↑ Action ↓
+                - rowgroup [ref=e65]:
+                  - row "S.No Name Mobile Number Email Account Number Account Userid Number Status Action" [ref=e66]:
+                    - columnheader "S.No" [ref=e67]
+                    - columnheader "Name" [ref=e68]
+                    - columnheader "Mobile Number" [ref=e69]
+                    - columnheader "Email" [ref=e70]
+                    - columnheader "Account Number" [ref=e71]
+                    - columnheader "Account Userid Number" [ref=e72]
+                    - columnheader "Status" [ref=e73]
+                    - columnheader "Action" [ref=e74]
+                - rowgroup [ref=e75]:
+                  - row "1 Rahul Kumar 4564564561 rahul12@gmail.com 873982407 222199404 Approved View" [ref=e76]:
+                    - gridcell "1" [ref=e77]
+                    - gridcell "Rahul Kumar" [ref=e78]
+                    - gridcell "4564564561" [ref=e79]
+                    - gridcell "rahul12@gmail.com" [ref=e80]
+                    - gridcell "873982407" [ref=e81]
+                    - gridcell "222199404" [ref=e82]
+                    - gridcell "Approved" [ref=e83]:
+                      - generic [ref=e84]: Approved
+                    - gridcell "View" [ref=e85]:
+                      - link "View" [ref=e86] [cursor=pointer]:
+                        - /url: account-details.php?userid=1&&viewid=1&&actnum=873982407
+                  - row "2 Anuj kumar 9354778033 anujk30@gmail.com 571991801 319974725 Approved View" [ref=e87]:
+                    - gridcell "2" [ref=e88]
+                    - gridcell "Anuj kumar" [ref=e89]
+                    - gridcell "9354778033" [ref=e90]
+                    - gridcell "anujk30@gmail.com" [ref=e91]
+                    - gridcell "571991801" [ref=e92]
+                    - gridcell "319974725" [ref=e93]
+                    - gridcell "Approved" [ref=e94]:
+                      - generic [ref=e95]: Approved
+                    - gridcell "View" [ref=e96]:
+                      - link "View" [ref=e97] [cursor=pointer]:
+                        - /url: account-details.php?userid=2&&viewid=2&&actnum=571991801
+                  - row "3 Manish Gupta 1233211230 manish123@gmail.com 147569176 400897082 Approved View" [ref=e98]:
+                    - gridcell "3" [ref=e99]
+                    - gridcell "Manish Gupta" [ref=e100]
+                    - gridcell "1233211230" [ref=e101]
+                    - gridcell "manish123@gmail.com" [ref=e102]
+                    - gridcell "147569176" [ref=e103]
+                    - gridcell "400897082" [ref=e104]
+                    - gridcell "Approved" [ref=e105]:
+                      - generic [ref=e106]: Approved
+                    - gridcell "View" [ref=e107]:
+                      - link "View" [ref=e108] [cursor=pointer]:
+                        - /url: account-details.php?userid=3&&viewid=3&&actnum=147569176
+                  - row "4 Garima Singh 1425362514 graima12@gmail.com 585403830 428491850 Approved View" [ref=e109]:
+                    - gridcell "4" [ref=e110]
+                    - gridcell "Garima Singh" [ref=e111]
+                    - gridcell "1425362514" [ref=e112]
+                    - gridcell "graima12@gmail.com" [ref=e113]
+                    - gridcell "585403830" [ref=e114]
+                    - gridcell "428491850" [ref=e115]
+                    - gridcell "Approved" [ref=e116]:
+                      - generic [ref=e117]: Approved
+                    - gridcell "View" [ref=e118]:
+                      - link "View" [ref=e119] [cursor=pointer]:
+                        - /url: account-details.php?userid=4&&viewid=4&&actnum=585403830
+                  - row "5 John Doe 9876543210 johndeo12@t.com 118239573 264602756 Approved View" [ref=e120]:
+                    - gridcell "5" [ref=e121]
+                    - gridcell "John Doe" [ref=e122]
+                    - gridcell "9876543210" [ref=e123]
+                    - gridcell "johndeo12@t.com" [ref=e124]
+                    - gridcell "118239573" [ref=e125]
+                    - gridcell "264602756" [ref=e126]
+                    - gridcell "Approved" [ref=e127]:
+                      - generic [ref=e128]: Approved
+                    - gridcell "View" [ref=e129]:
+                      - link "View" [ref=e130] [cursor=pointer]:
+                        - /url: account-details.php?userid=5&&viewid=5&&actnum=118239573
+                  - row "6 Automation User 9999999999 user@gmail.com 333467790 639372946 Approved View" [ref=e131]:
+                    - gridcell "6" [ref=e132]
+                    - gridcell "Automation User" [ref=e133]
+                    - gridcell "9999999999" [ref=e134]
+                    - gridcell "user@gmail.com" [ref=e135]
+                    - gridcell "333467790" [ref=e136]
+                    - gridcell "639372946" [ref=e137]
+                    - gridcell "Approved" [ref=e138]:
+                      - generic [ref=e139]: Approved
+                    - gridcell "View" [ref=e140]:
+                      - link "View" [ref=e141] [cursor=pointer]:
+                        - /url: account-details.php?userid=8&&viewid=7&&actnum=333467790
+                  - row "7 test test 9999999999 testuser@gmail.com 805751507 751296355 Approved View" [ref=e142]:
+                    - gridcell "7" [ref=e143]
+                    - gridcell "test test" [ref=e144]
+                    - gridcell "9999999999" [ref=e145]
+                    - gridcell "testuser@gmail.com" [ref=e146]
+                    - gridcell "805751507" [ref=e147]
+                    - gridcell "751296355" [ref=e148]
+                    - gridcell "Approved" [ref=e149]:
+                      - generic [ref=e150]: Approved
+                    - gridcell "View" [ref=e151]:
+                      - link "View" [ref=e152] [cursor=pointer]:
+                        - /url: account-details.php?userid=9&&viewid=8&&actnum=805751507
+                  - row "8 testUser test 9999999999 test@gmail.com 500500211 967291198 Approved View" [ref=e153]:
+                    - gridcell "8" [ref=e154]
+                    - gridcell "testUser test" [ref=e155]
+                    - gridcell "9999999999" [ref=e156]
+                    - gridcell "test@gmail.com" [ref=e157]
+                    - gridcell "500500211" [ref=e158]
+                    - gridcell "967291198" [ref=e159]
+                    - gridcell "Approved" [ref=e160]:
+                      - generic [ref=e161]: Approved
+                    - gridcell "View" [ref=e162]:
+                      - link "View" [ref=e163] [cursor=pointer]:
+                        - /url: account-details.php?userid=10&&viewid=9&&actnum=500500211
+                  - row "9 test test 999999999 test123@gmail.com 192766900 780012663 Approved View" [ref=e164]:
+                    - gridcell "9" [ref=e165]
+                    - gridcell "test test" [ref=e166]
+                    - gridcell "999999999" [ref=e167]
+                    - gridcell "test123@gmail.com" [ref=e168]
+                    - gridcell "192766900" [ref=e169]
+                    - gridcell "780012663" [ref=e170]
+                    - gridcell "Approved" [ref=e171]:
+                      - generic [ref=e172]: Approved
+                    - gridcell "View" [ref=e173]:
+                      - link "View" [ref=e174] [cursor=pointer]:
+                        - /url: account-details.php?userid=13&&viewid=10&&actnum=192766900
+                  - row "10 user1234 test 9999999999 user@1234.com 739864969 842108766 Approved View" [ref=e175]:
+                    - gridcell "10" [ref=e176]
+                    - gridcell "user1234 test" [ref=e177]
+                    - gridcell "9999999999" [ref=e178]
+                    - gridcell "user@1234.com" [ref=e179]
+                    - gridcell "739864969" [ref=e180]
+                    - gridcell "842108766" [ref=e181]
+                    - gridcell "Approved" [ref=e182]:
+                      - generic [ref=e183]: Approved
+                    - gridcell "View" [ref=e184]:
+                      - link "View" [ref=e185] [cursor=pointer]:
+                        - /url: account-details.php?userid=15&&viewid=11&&actnum=739864969
+              - generic [ref=e186]:
+                - status [ref=e188]: Showing 1 to 10 of 41 entries
+                - list [ref=e191]:
+                  - listitem [ref=e192]:
+                    - link "Previous":
+                      - /url: "#"
+                  - listitem [ref=e193]:
+                    - link "1" [ref=e194] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=e195]:
+                    - link "2" [ref=e196] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=e197]:
+                    - link "3" [ref=e198] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=e199]:
+                    - link "4" [ref=e200] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=e201]:
+                    - link "5" [ref=e202] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=e203]:
+                    - link "Next" [ref=e204] [cursor=pointer]:
+                      - /url: "#"
+      - contentinfo [ref=e205]:
+        - generic [ref=e207]: e-Banking System
+  - text: 
+```

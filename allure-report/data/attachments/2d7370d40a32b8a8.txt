@@ -1,0 +1,4 @@
+Attempt 1/3 failed: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for getByAltText('New Request')
+

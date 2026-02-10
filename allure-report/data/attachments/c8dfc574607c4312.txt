@@ -1,0 +1,24 @@
+Element clicked successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Element clicked successfully on attempt 1.
+surya1245264@gmail.com
+surya@123361
+Alert text: You have successfully registered with us
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Option with label 'Adhar Card' selected successfully on attempt 1.
+Text entered successfully on attempt 1.
+File uploaded successfully: C:\Users\Guruji\Pictures\Screenshots\Aadhaarcard.png
+File uploaded successfully: C:\Users\Guruji\Pictures\Screenshots\PanCard.png
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Checkbox checked successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Alert text: This PAN number already exist. Please try again

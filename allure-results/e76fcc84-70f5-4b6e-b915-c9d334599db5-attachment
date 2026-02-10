@@ -1,0 +1,5 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]: "Error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it"
+```

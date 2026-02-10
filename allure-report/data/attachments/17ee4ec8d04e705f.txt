@@ -1,0 +1,10 @@
+Element clicked successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Searching for: user_555e0f yajjuvarapu
+Text entered successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Searching for: user_0de260 yajjuvarapu

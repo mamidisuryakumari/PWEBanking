@@ -1,0 +1,92 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - list [ref=e3]:
+      - link " e-Banking" [ref=e4] [cursor=pointer]:
+        - /url: dashboard.php
+        - generic [ref=e6]: 
+        - generic [ref=e7]: e-Banking
+      - separator [ref=e8]
+      - listitem [ref=e9]:
+        - link " Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: dashboard.php
+          - generic [ref=e11]: 
+          - text: Dashboard
+      - separator [ref=e12]
+      - generic [ref=e13]: Interface
+      - listitem [ref=e14]:
+        - link " Account Openning" [ref=e15] [cursor=pointer]:
+          - /url: account-opening-form.php
+          - generic [ref=e16]: 
+          - text: Account Openning
+      - listitem [ref=e17]:
+        - link " Payee / Beneficiary " [expanded] [ref=e18] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e19]: 
+          - text: Payee / Beneficiary 
+      - listitem [ref=e20]:
+        - link " Transaction History" [ref=e21] [cursor=pointer]:
+          - /url: txn-history.php
+          - generic [ref=e22]: 
+          - text: Transaction History
+      - listitem [ref=e23]:
+        - link " Report" [ref=e24] [cursor=pointer]:
+          - /url: report.php
+          - generic [ref=e25]: 
+          - text: Report
+      - separator [ref=e26]
+      - button "" [ref=e28] [cursor=pointer]
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - navigation [ref=e31]:
+          - text: 
+          - list [ref=e32]:
+            - listitem [ref=e34]:
+              - button "Surya123874 M" [ref=e35] [cursor=pointer]:
+                - generic [ref=e36]: Surya123874 M
+                - img [ref=e37]
+              - text:   
+        - generic [ref=e38]:
+          - heading "Account Details" [level=3] [ref=e39]
+          - generic [ref=e42]:
+            - heading "Account Opening Details" [level=6] [ref=e44]
+            - generic [ref=e46]:
+              - generic [ref=e47]:
+                - generic [ref=e48]: Address Proof
+                - combobox [ref=e49]:
+                  - option "Choose Address Proof"
+                  - option "Voter ID"
+                  - option "Adhar Card" [selected]
+                  - option "Driving Licence"
+                  - option "Passport"
+              - generic [ref=e50]:
+                - generic [ref=e51]: Address Proof ID Number
+                - textbox [ref=e52]: 1245 4586 2354 5896
+              - generic [ref=e53]:
+                - generic [ref=e54]: Upload Address Proof
+                - button "Choose File" [ref=e55]
+              - generic [ref=e56]:
+                - generic [ref=e57]: Upload PAN Card
+                - button "Choose File" [ref=e58]
+              - generic [ref=e59]:
+                - generic [ref=e60]: PAN Card Number
+                - textbox [ref=e61]: ABCDE1234F
+              - generic [ref=e62]:
+                - generic [ref=e63]: Address
+                - textbox [ref=e64]: Manikonda,Hyderabad
+              - generic [ref=e65]:
+                - generic [ref=e66]: Date of Birth
+                - textbox [active] [ref=e67]
+              - checkbox [ref=e68]
+              - strong [ref=e70]: Accept the term & condition
+              - separator [ref=e71]
+              - button "Submit" [ref=e72] [cursor=pointer]
+              - separator [ref=e73]
+      - contentinfo [ref=e74]:
+        - generic [ref=e76]: e-banking System
+  - link "" [ref=e77] [cursor=pointer]:
+    - /url: "#page-top"
+    - generic [ref=e78]: 
+```

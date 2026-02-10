@@ -1,0 +1,88 @@
+Attempt 1/3 failed: locator.click: Error: strict mode violation: getByText('Payee / Beneficiary') resolved to 3 elements:
+    1) <span>Payee / Beneficiary</span> aka getByRole('link', { name: ' Payee / Beneficiary ' })
+    2) <h3 class="h3 mb-4 text-gray-800">Add Payee / beneficiary</h3> aka getByRole('heading', { name: 'Add Payee / beneficiary' })
+    3) <h6 class="m-0 font-weight-bold text-primary">Payee /  Beneficiary</h6> aka getByRole('heading', { name: 'Payee / Beneficiary', exact: true })
+
+Call log:
+  - waiting for getByText('Payee / Beneficiary')
+
+Attempt 2/3 failed: locator.click: Error: strict mode violation: getByText('Payee / Beneficiary') resolved to 3 elements:
+    1) <span>Payee / Beneficiary</span> aka getByRole('link', { name: ' Payee / Beneficiary ' })
+    2) <h3 class="h3 mb-4 text-gray-800">Add Payee / beneficiary</h3> aka getByRole('heading', { name: 'Add Payee / beneficiary' })
+    3) <h6 class="m-0 font-weight-bold text-primary">Payee /  Beneficiary</h6> aka getByRole('heading', { name: 'Payee / Beneficiary', exact: true })
+
+Call log:
+  - waiting for getByText('Payee / Beneficiary')
+
+Attempt 3/3 failed: locator.click: Error: strict mode violation: getByText('Payee / Beneficiary') resolved to 3 elements:
+    1) <span>Payee / Beneficiary</span> aka getByRole('link', { name: ' Payee / Beneficiary ' })
+    2) <h3 class="h3 mb-4 text-gray-800">Add Payee / beneficiary</h3> aka getByRole('heading', { name: 'Add Payee / beneficiary' })
+    3) <h6 class="m-0 font-weight-bold text-primary">Payee /  Beneficiary</h6> aka getByRole('heading', { name: 'Payee / Beneficiary', exact: true })
+
+Call log:
+  - waiting for getByText('Payee / Beneficiary')
+
+Error clicking element after retries: locator.click: Error: strict mode violation: getByText('Payee / Beneficiary') resolved to 3 elements:
+    1) <span>Payee / Beneficiary</span> aka getByRole('link', { name: ' Payee / Beneficiary ' })
+    2) <h3 class="h3 mb-4 text-gray-800">Add Payee / beneficiary</h3> aka getByRole('heading', { name: 'Add Payee / beneficiary' })
+    3) <h6 class="m-0 font-weight-bold text-primary">Payee /  Beneficiary</h6> aka getByRole('heading', { name: 'Payee / Beneficiary', exact: true })
+
+Call log:
+  - waiting for getByText('Payee / Beneficiary')
+
+    at ElementUtils.clickElement (E:\Projects\EBankingpw\utils\ElementUtils.ts:17:23)
+    at UserDashBoardPage.navigateToAddPayeePage (E:\Projects\EBankingpw\pages\UserDashBoardPage.ts:31:5)
+    at E:\Projects\EBankingpw\tests\addpayee.spec.ts:59:17 {
+  Symbol(step): {
+    location: {
+      file: 'E:\\Projects\\EBankingpw\\utils\\ElementUtils.ts',
+      line: 17,
+      column: 23,
+      function: 'ElementUtils.clickElement'
+    },
+    category: 'pw:api',
+    title: "Click getByText('Payee / Beneficiary')",
+    apiName: 'locator.click',
+    params: {
+      selector: 'internal:text="Payee / Beneficiary"i',
+      strict: true,
+      timeout: 0
+    },
+    group: undefined,
+    stepId: 'pw:api@81',
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@81',
+      _title: "Click getByText('Payee / Beneficiary')",
+      _parentStep: undefined,
+      skip: [Function (anonymous)]
+    },
+    complete: [Function: complete],
+    endWallTime: 1768993554779,
+    error: {
+      message: "Error: locator.click: Error: strict mode violation: getByText('Payee / Beneficiary') resolved to 3 elements:\n" +
+        "    1) <span>Payee / Beneficiary</span> aka getByRole('link', { name: ' Payee / Beneficiary ' })\n" +
+        `    2) <h3 class="h3 mb-4 text-gray-800">Add Payee / beneficiary</h3> aka getByRole('heading', { name: 'Add Payee / beneficiary' })\n` +
+        `    3) <h6 class="m-0 font-weight-bold text-primary">Payee /  Beneficiary</h6> aka getByRole('heading', { name: 'Payee / Beneficiary', exact: true })\n` +
+        '\n' +
+        'Call log:\n' +
+        "\x1B[2m  - waiting for getByText('Payee / Beneficiary')\x1B[22m\n",
+      stack: "Error: locator.click: Error: strict mode violation: getByText('Payee / Beneficiary') resolved to 3 elements:\n" +
+        "    1) <span>Payee / Beneficiary</span> aka getByRole('link', { name: ' Payee / Beneficiary ' })\n" +
+        `    2) <h3 class="h3 mb-4 text-gray-800">Add Payee / beneficiary</h3> aka getByRole('heading', { name: 'Add Payee / beneficiary' })\n` +
+        `    3) <h6 class="m-0 font-weight-bold text-primary">Payee /  Beneficiary</h6> aka getByRole('heading', { name: 'Payee / Beneficiary', exact: true })\n` +
+        '\n' +
+        'Call log:\n' +
+        "\x1B[2m  - waiting for getByText('Payee / Beneficiary')\x1B[22m\n" +
+        '\n' +
+        '    at ElementUtils.clickElement (E:\\Projects\\EBankingpw\\utils\\ElementUtils.ts:17:23)\n' +
+        '    at UserDashBoardPage.navigateToAddPayeePage (E:\\Projects\\EBankingpw\\pages\\UserDashBoardPage.ts:31:5)\n' +
+        '    at E:\\Projects\\EBankingpw\\tests\\addpayee.spec.ts:59:17',
+      cause: undefined
+    }
+  }
+}

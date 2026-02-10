@@ -1,0 +1,178 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - list [ref=e3]:
+      - link " e-Banking" [ref=e4] [cursor=pointer]:
+        - /url: dashboard.php
+        - generic [ref=e6]: 
+        - generic [ref=e7]: e-Banking
+      - separator [ref=e8]
+      - listitem [ref=e9]:
+        - link " Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: dashboard.php
+          - generic [ref=e11]: 
+          - text: Dashboard
+      - separator [ref=e12]
+      - generic [ref=e13]: Interface
+      - listitem [ref=e14]:
+        - link " Account Openning" [ref=e15] [cursor=pointer]:
+          - /url: account-opening-form.php
+          - generic [ref=e16]: 
+          - text: Account Openning
+      - listitem [ref=e17]:
+        - link " Payee / Beneficiary " [expanded] [ref=e18] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e19]: 
+          - text: Payee / Beneficiary 
+      - listitem [ref=e20]:
+        - link " Transaction History" [ref=e21] [cursor=pointer]:
+          - /url: txn-history.php
+          - generic [ref=e22]: 
+          - text: Transaction History
+      - listitem [ref=e23]:
+        - link " Report" [ref=e24] [cursor=pointer]:
+          - /url: report.php
+          - generic [ref=e25]: 
+          - text: Report
+      - separator [ref=e26]
+      - button "" [ref=e28] [cursor=pointer]
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - navigation [ref=e31]:
+          - text: 
+          - list [ref=e32]:
+            - listitem [ref=e34]:
+              - button "Automation User" [ref=e35] [cursor=pointer]:
+                - generic [ref=e36]: Automation User
+                - img [ref=e37]
+              - text:   
+        - generic [ref=e38]:
+          - heading "Manage Payee" [level=1] [ref=e39]
+          - generic [ref=e40]:
+            - heading "Manage Payee" [level=6] [ref=e42]
+            - generic [ref=e45]:
+              - generic [ref=e46]:
+                - generic [ref=e49]:
+                  - text: Show
+                  - combobox "Show entries" [ref=e50]:
+                    - option "10" [selected]
+                    - option "25"
+                    - option "50"
+                    - option "100"
+                  - text: entries
+                - generic [ref=e53]:
+                  - text: "Search:"
+                  - searchbox "Search:" [ref=e54]
+              - grid [ref=e57]:
+                - rowgroup [ref=e58]:
+                  - 'row "S.No: activate to sort column descending Name of Payee: activate to sort column ascending Mobile Number: activate to sort column ascending Email: activate to sort column ascending Account Number: activate to sort column ascending Creation Date: activate to sort column ascending Action: activate to sort column ascending" [ref=e59]':
+                    - 'columnheader "S.No: activate to sort column descending" [ref=e60] [cursor=pointer]': ↑ S.No ↓
+                    - 'columnheader "Name of Payee: activate to sort column ascending" [ref=e61] [cursor=pointer]': ↑ Name of Payee ↓
+                    - 'columnheader "Mobile Number: activate to sort column ascending" [ref=e62] [cursor=pointer]': ↑ Mobile Number ↓
+                    - 'columnheader "Email: activate to sort column ascending" [ref=e63] [cursor=pointer]': ↑ Email ↓
+                    - 'columnheader "Account Number: activate to sort column ascending" [ref=e64] [cursor=pointer]': ↑ Account Number ↓
+                    - 'columnheader "Creation Date: activate to sort column ascending" [ref=e65] [cursor=pointer]': ↑ Creation Date ↓
+                    - 'columnheader "Action: activate to sort column ascending" [ref=e66] [cursor=pointer]': ↑ Action ↓
+                - rowgroup [ref=e67]:
+                  - row "1 John Doe 9876543210 johndeo12@t.com 118239573 2025-06-05 08:28:58 Delete Transfer" [ref=e68]:
+                    - gridcell "1" [ref=e69]
+                    - gridcell "John Doe" [ref=e70]
+                    - gridcell "9876543210" [ref=e71]
+                    - gridcell "johndeo12@t.com" [ref=e72]
+                    - gridcell "118239573" [ref=e73]
+                    - gridcell "2025-06-05 08:28:58" [ref=e74]
+                    - gridcell "Delete Transfer" [ref=e75]:
+                      - link "Delete" [ref=e76] [cursor=pointer]:
+                        - /url: manage-payee.php?delid=11
+                      - link "Transfer" [ref=e77] [cursor=pointer]:
+                        - /url: send-money-details.php?payeeid=11&&actholderid=5&&actnum=118239573&&sactnum=118239573
+                  - row "2 Anuj kumar 9354778033 anujk30@gmail.com 571991801 2025-08-09 16:10:35 Delete Transfer" [ref=e78]:
+                    - gridcell "2" [ref=e79]
+                    - gridcell "Anuj kumar" [ref=e80]
+                    - gridcell "9354778033" [ref=e81]
+                    - gridcell "anujk30@gmail.com" [ref=e82]
+                    - gridcell "571991801" [ref=e83]
+                    - gridcell "2025-08-09 16:10:35" [ref=e84]
+                    - gridcell "Delete Transfer" [ref=e85]:
+                      - link "Delete" [ref=e86] [cursor=pointer]:
+                        - /url: manage-payee.php?delid=15
+                      - link "Transfer" [ref=e87] [cursor=pointer]:
+                        - /url: send-money-details.php?payeeid=15&&actholderid=2&&actnum=571991801&&sactnum=571991801
+                  - row "3 Rahul Kumar 4564564561 rahul12@gmail.com 873982407 2026-01-21 16:29:41 Delete Transfer" [ref=e88]:
+                    - gridcell "3" [ref=e89]
+                    - gridcell "Rahul Kumar" [ref=e90]
+                    - gridcell "4564564561" [ref=e91]
+                    - gridcell "rahul12@gmail.com" [ref=e92]
+                    - gridcell "873982407" [ref=e93]
+                    - gridcell "2026-01-21 16:29:41" [ref=e94]
+                    - gridcell "Delete Transfer" [ref=e95]:
+                      - link "Delete" [ref=e96] [cursor=pointer]:
+                        - /url: manage-payee.php?delid=19
+                      - link "Transfer" [ref=e97] [cursor=pointer]:
+                        - /url: send-money-details.php?payeeid=19&&actholderid=1&&actnum=873982407&&sactnum=873982407
+                  - row "4 Manish Gupta 1233211230 manish123@gmail.com 147569176 2026-01-21 16:32:28 Delete Transfer" [ref=e98]:
+                    - gridcell "4" [ref=e99]
+                    - gridcell "Manish Gupta" [ref=e100]
+                    - gridcell "1233211230" [ref=e101]
+                    - gridcell "manish123@gmail.com" [ref=e102]
+                    - gridcell "147569176" [ref=e103]
+                    - gridcell "2026-01-21 16:32:28" [ref=e104]
+                    - gridcell "Delete Transfer" [ref=e105]:
+                      - link "Delete" [ref=e106] [cursor=pointer]:
+                        - /url: manage-payee.php?delid=20
+                      - link "Transfer" [ref=e107] [cursor=pointer]:
+                        - /url: send-money-details.php?payeeid=20&&actholderid=3&&actnum=147569176&&sactnum=147569176
+                  - row "5 Garima Singh 1425362514 graima12@gmail.com 585403830 2026-01-21 16:37:58 Delete Transfer" [ref=e108]:
+                    - gridcell "5" [ref=e109]
+                    - gridcell "Garima Singh" [ref=e110]
+                    - gridcell "1425362514" [ref=e111]
+                    - gridcell "graima12@gmail.com" [ref=e112]
+                    - gridcell "585403830" [ref=e113]
+                    - gridcell "2026-01-21 16:37:58" [ref=e114]
+                    - gridcell "Delete Transfer" [ref=e115]:
+                      - link "Delete" [ref=e116] [cursor=pointer]:
+                        - /url: manage-payee.php?delid=21
+                      - link "Transfer" [ref=e117] [cursor=pointer]:
+                        - /url: send-money-details.php?payeeid=21&&actholderid=4&&actnum=585403830&&sactnum=585403830
+                  - row "6 Automation User 9999999999 user@gmail.com 333467790 2026-01-21 16:39:09 Delete Transfer" [ref=e118]:
+                    - gridcell "6" [ref=e119]
+                    - gridcell "Automation User" [ref=e120]
+                    - gridcell "9999999999" [ref=e121]
+                    - gridcell "user@gmail.com" [ref=e122]
+                    - gridcell "333467790" [ref=e123]
+                    - gridcell "2026-01-21 16:39:09" [ref=e124]
+                    - gridcell "Delete Transfer" [ref=e125]:
+                      - link "Delete" [ref=e126] [cursor=pointer]:
+                        - /url: manage-payee.php?delid=22
+                      - link "Transfer" [ref=e127] [cursor=pointer]:
+                        - /url: send-money-details.php?payeeid=22&&actholderid=8&&actnum=333467790&&sactnum=333467790
+                  - row "7 test test 9999999999 testuser@gmail.com 805751507 2026-01-21 17:08:22 Delete Transfer" [ref=e128]:
+                    - gridcell "7" [ref=e129]
+                    - gridcell "test test" [ref=e130]
+                    - gridcell "9999999999" [ref=e131]
+                    - gridcell "testuser@gmail.com" [ref=e132]
+                    - gridcell "805751507" [ref=e133]
+                    - gridcell "2026-01-21 17:08:22" [ref=e134]
+                    - gridcell "Delete Transfer" [ref=e135]:
+                      - link "Delete" [ref=e136] [cursor=pointer]:
+                        - /url: manage-payee.php?delid=23
+                      - link "Transfer" [ref=e137] [cursor=pointer]:
+                        - /url: send-money-details.php?payeeid=23&&actholderid=9&&actnum=805751507&&sactnum=805751507
+              - generic [ref=e138]:
+                - status [ref=e140]: Showing 1 to 7 of 7 entries
+                - list [ref=e143]:
+                  - listitem [ref=e144]:
+                    - link "Previous":
+                      - /url: "#"
+                  - listitem [ref=e145]:
+                    - link "1" [ref=e146] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=e147]:
+                    - link "Next":
+                      - /url: "#"
+      - contentinfo [ref=e148]:
+        - generic [ref=e150]: e-banking System
+  - text: 
+```

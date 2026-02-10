@@ -1,0 +1,5 @@
+scenario,email,password
+Invalid email,usergmail.com,123
+Invalid password,user@gmail.com,wrong
+Both invalid,usergmail,12
+Empty values,,

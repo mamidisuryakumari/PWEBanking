@@ -1,0 +1,49 @@
+Element clicked successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Number of rows: 10
+Row 1 has 8 cells
+  Cell 1: 1
+  Cell 2: Rahul Kumar
+  Cell 3: 4564564561
+  Cell 4: rahul12@gmail.com
+  Cell 5: 873982407
+  Cell 6: 222199404
+  Cell 7:  Approved
+                  
+  Cell 8: View 
+Row 2 has 8 cells
+  Cell 1: 2
+  Cell 2: Anuj kumar
+  Cell 3: 9354778033
+  Cell 4: anujk30@gmail.com
+  Cell 5: 571991801
+  Cell 6: 319974725
+  Cell 7:  Approved
+                  
+  Cell 8: View 
+Row 3 has 8 cells
+  Cell 1: 3
+  Cell 2: Manish Gupta
+  Cell 3: 1233211230
+  Cell 4: manish123@gmail.com
+  Cell 5: 147569176
+  Cell 6: 400897082
+  Cell 7:  Approved
+                  
+  Cell 8: View 
+Account Number: 4564564561
+Account Holder Name: Rahul Kumar
+Element clicked successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Text entered successfully on attempt 1.
+Element clicked successfully on attempt 1.
+Alert message: Invalid Account Number. Please try again
