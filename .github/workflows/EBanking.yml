@@ -23,17 +23,24 @@ jobs:
         sudo systemctl start apache2
         sudo systemctl start mysql
 
-    # Move project to Apache root folder
-    - name: Copy project to web root
+    # Create database
+    - name: Create MySQL Database
+      run: |
+        sudo mysql -u root -e "CREATE DATABASE bankms;"
+
+    # Import SQL file (IMPORTANT: change file name if needed)
+    - name: Import Database
+      run: |
+        sudo mysql -u root bankms < bankms.sql
+
+    # Copy project to Apache web root
+    - name: Copy project to Apache
       run: |
         sudo cp -r . /var/www/html/bankms
         sudo chmod -R 777 /var/www/html/bankms
+        sudo systemctl restart apache2
 
-    # Start Apache again
-    - name: Restart Apache
-      run: sudo systemctl restart apache2
-
-    # Set up Node
+    # Set up Node.js
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -45,8 +52,11 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    # Run Playwright against Apache localhost
-    - name: Run Playwright tests
+    # Wait few seconds for Apache
+    - name: Wait for server
+      run: sleep 5
+
+    - name: Run Playwright Test
       run: npx playwright test tests/userlogin.spec.ts
 
     - name: Upload Playwright HTML Report
