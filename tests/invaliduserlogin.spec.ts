@@ -35,10 +35,8 @@ test.describe("User login with invalid values",()=>{
         (el: HTMLInputElement) => el.validationMessage
       );
 
-      console.log("Validation message:", validationMessage);
-      expect(validationMessage).not.toBe("");
-      // Optionally, check for a substring (uncomment if needed):
-    //  expect(validationMessage.toLowerCase()).toContain('fill');
+      const expectedMessage = data.expectedMessage;
+      expect(validationMessage).toBe(expectedMessage);
     });
   }
 });
