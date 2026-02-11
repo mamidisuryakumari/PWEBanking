@@ -1,33 +1,54 @@
 name: Playwright Tests
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
-    
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
+    # Install Apache + PHP + MySQL
+    - name: Install LAMP stack
+      run: |
+        sudo apt update
+        sudo apt install apache2 php libapache2-mod-php mysql-server -y
+        sudo systemctl start apache2
+        sudo systemctl start mysql
+
+    # Move project to Apache root folder
+    - name: Copy project to web root
+      run: |
+        sudo cp -r . /var/www/html/bankms
+        sudo chmod -R 777 /var/www/html/bankms
+
+    # Start Apache again
+    - name: Restart Apache
+      run: sudo systemctl restart apache2
+
+    # Set up Node
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: lts/*
-    
+
     - name: Install dependencies
       run: npm ci
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
+    # Run Playwright against Apache localhost
     - name: Run Playwright tests
       run: npx playwright test tests/userlogin.spec.ts
-    
+
     - name: Upload Playwright HTML Report
       if: always()
       uses: actions/upload-artifact@v4
