@@ -11,7 +11,7 @@ test("User login",async({page})=>{
     const homePage = new HomePage(page);
     const config = new TestConfig();
     
-    await page.goto(config.baseURL);
+    await page.goto("http://localhost/bankms/");
     await expect(page).toHaveTitle(config.homePageTitle);
     await homePage.navigateByUserRole(page,UserRole.USER);
     await expect(page).toHaveTitle(config.userLoginPageTitle);

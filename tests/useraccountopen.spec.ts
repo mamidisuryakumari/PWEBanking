@@ -21,7 +21,7 @@ test("User Account Opening", async ({ page }) => {
 
     await page.goto(config.baseURL);
     await expect(page).toHaveTitle(config.homePageTitle);
-    await homePage.navigateByUserRole(page,config.userRole);
+    await homePage.navigateByUserRole(page,UserRole.USER);
     await expect(page).toHaveTitle(config.userLoginPageTitle);
 
     await userLoginPage.clickCreateAccountLink();
