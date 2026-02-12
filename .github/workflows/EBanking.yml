@@ -30,7 +30,7 @@ jobs:
     # ----------------------------
     - name: Create MySQL Database
       run: |
-        sudo mysql -e "CREATE DATABASE bankms;"
+        sudo mysql -e "CREATE DATABASE bankmsdb;"
 
     # ----------------------------
     # Import SQL (FIXED)
