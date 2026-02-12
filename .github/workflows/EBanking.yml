@@ -15,6 +15,38 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
+    # ----------------------------
+    # Install Apache + PHP + MySQL
+    # ----------------------------
+    - name: Install LAMP stack
+      run: |
+        sudo apt update
+        sudo apt install -y apache2 php libapache2-mod-php php-mysql mysql-server
+        sudo systemctl start apache2
+        sudo systemctl start mysql
+
+    # ----------------------------
+    # Create Database (FIXED)
+    # ----------------------------
+    - name: Create MySQL Database
+      run: |
+        sudo mysql -e "CREATE DATABASE bankms;"
+
+    # ----------------------------
+    # Import SQL (FIXED)
+    # ----------------------------
+    - name: Import Database
+      run: |
+        sudo mysql bankms < bankmsdb.sql
+
+    # ----------------------------
+    # Copy ONLY bankms folder
+    # ----------------------------
+    - name: Copy project to Apache
+      run: |
+        sudo cp -r bankms /var/www/html/
+        sudo chmod -R 755 /var/www/html/bankms
+        sudo systemctl restart apache2
 
     # ----------------------------
     # Setup Node
@@ -30,6 +62,13 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
+    # ----------------------------
+    # Wait & Check Server
+    # ----------------------------
+    - name: Wait for server
+      run: |
+        sleep 5
+        curl http://localhost/bankms
 
     # ----------------------------
     # Run Playwright Test
