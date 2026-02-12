@@ -8,52 +8,49 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
     timeout-minutes: 60
-
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: bankms
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    # Install Apache + PHP
-    - name: Install Apache & PHP
+    # ----------------------------
+    # Install Apache + PHP + MySQL
+    # ----------------------------
+    - name: Install LAMP stack
       run: |
         sudo apt update
-        sudo apt install -y apache2 php libapache2-mod-php php-mysql
+        sudo apt install -y apache2 php libapache2-mod-php php-mysql mysql-server
         sudo systemctl start apache2
+        sudo systemctl start mysql
 
-    # Wait for MySQL container
-    - name: Wait for MySQL
+    # ----------------------------
+    # Create Database (FIXED)
+    # ----------------------------
+    - name: Create MySQL Database
       run: |
-        sleep 15
+        sudo mysql -e "CREATE DATABASE bankms;"
 
-    # Import database
-    - name: Import SQL file
+    # ----------------------------
+    # Import SQL (FIXED)
+    # ----------------------------
+    - name: Import Database
       run: |
-        mysql -h 127.0.0.1 -P 3306 -u root -proot bankms < bankmsdb.sql
+        sudo mysql bankms < bankmsdb.sql
 
-    # Copy PHP project
-    - name: Deploy PHP project
+    # ----------------------------
+    # Copy ONLY bankms folder
+    # ----------------------------
+    - name: Copy project to Apache
       run: |
         sudo cp -r bankms /var/www/html/
         sudo chmod -R 755 /var/www/html/bankms
         sudo systemctl restart apache2
 
+    # ----------------------------
     # Setup Node
+    # ----------------------------
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -65,11 +62,17 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    - name: Wait for Server
+    # ----------------------------
+    # Wait & Check Server
+    # ----------------------------
+    - name: Wait for server
       run: |
         sleep 5
         curl http://localhost/bankms
 
+    # ----------------------------
+    # Run Playwright Test
+    # ----------------------------
     - name: Run Playwright Test
       run: npx playwright test tests/userlogin.spec.ts
 
@@ -80,4 +83,5 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
 
