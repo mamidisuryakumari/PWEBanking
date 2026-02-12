@@ -1,4 +1,4 @@
-name: Playwright PHP Project Tests
+name: Playwright Tests
 
 on:
   push:
@@ -15,43 +15,32 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    # ----------------------------
     # Install Apache + PHP + MySQL
-    # ----------------------------
     - name: Install LAMP stack
       run: |
         sudo apt update
-        sudo apt install -y apache2 mysql-server php libapache2-mod-php php-mysql
+        sudo apt install apache2 php libapache2-mod-php mysql-server -y
         sudo systemctl start apache2
         sudo systemctl start mysql
 
-    # ----------------------------
-    # Setup MySQL Database
-    # ----------------------------
-    - name: Create Database and Import SQL
+    # Create database
+    - name: Create MySQL Database
       run: |
-        sudo mysql -e "CREATE DATABASE bankms;"
-        sudo mysql bankms < bankms.sql
+        sudo mysql -u root -e "CREATE DATABASE bankms;"
 
-    # ----------------------------
-    # Copy PHP Project to Apache
-    # ----------------------------
-    - name: Deploy PHP project
+    # Import SQL file (IMPORTANT: change file name if needed)
+    - name: Import Database
       run: |
-        sudo cp -r bankms /var/www/html/
-        sudo chmod -R 755 /var/www/html/bankms
+        sudo mysql -u root bankms < bankms.sql
 
-    # ----------------------------
-    # Update DB Config (if needed)
-    # ----------------------------
-    # Make sure your config.php uses:
-    # host = localhost
-    # user = root
-    # password = (empty)
+    # Copy project to Apache web root
+    - name: Copy project to Apache
+      run: |
+        sudo cp -r . /var/www/html/bankms
+        sudo chmod -R 777 /var/www/html/bankms
+        sudo systemctl restart apache2
 
-    # ----------------------------
-    # Setup Node & Playwright
-    # ----------------------------
+    # Set up Node.js
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -63,23 +52,13 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    # ----------------------------
-    # Wait for Apache
-    # ----------------------------
-    - name: Wait for Server
-      run: |
-        sleep 10
-        curl http://localhost/bankms
+    # Wait few seconds for Apache
+    - name: Wait for server
+      run: sleep 5
 
-    # ----------------------------
-    # Run Playwright Tests
-    # ----------------------------
-    - name: Run Playwright Tests
+    - name: Run Playwright Test
       run: npx playwright test tests/userlogin.spec.ts
 
-    # ----------------------------
-    # Upload Report
-    # ----------------------------
     - name: Upload Playwright HTML Report
       if: always()
       uses: actions/upload-artifact@v4
