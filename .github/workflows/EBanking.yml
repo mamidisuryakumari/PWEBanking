@@ -2,10 +2,14 @@ name: BankMS Playwright Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
+      - dev
 
   pull_request:
-    branches: [ main ]
+    branches: 
+      - main
+      - dev
 
 jobs:
   playwright-tests:
@@ -13,37 +17,30 @@ jobs:
 
     steps:
 
-    # Step 1: Checkout code
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # Step 2: Install Node.js
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 20
 
-    # Step 3: Install dependencies
     - name: Install dependencies
       run: npm ci
 
-    # Step 4: Install Playwright browsers
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    # Step 5: Run Playwright tests
     - name: Run Playwright tests
       run: npm test
 
-    # Step 6: Upload HTML report
     - name: Upload Playwright HTML Report
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: playwright-html-report
+        name: playwright-report
         path: playwright-report/
 
-    # Step 7: Upload Allure results
     - name: Upload Allure Results
       uses: actions/upload-artifact@v4
       if: always()
