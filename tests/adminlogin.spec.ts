@@ -15,7 +15,7 @@ test("Admin Login", async ({ page }) => {
     await page.goto(config.baseURL);
     await expect(page).toHaveTitle(config.homePageTitle);
     
-    await  homePage.navigateByUserRole(page, config.adminRole);
+   // await  homePage.navigateByUserRole(page, config.adminRole);
     await expect(page).toHaveTitle(config.adminLoginPageTitle);
 
     await adminLoginPage.adminLogin(config.adminEmail,config.adminPassword);

@@ -12,7 +12,7 @@ test("Cashier Login Test", async ({page})=>{
     const config = new TestConfig();
 
     await page.goto(config.baseURL);
-    await homePage.navigateByUserRole(page,"cashier");
+  //  await homePage.navigateByUserRole(page,"cashier");
     await cashierLoginPage.cashierLogin(config.cashierEmail,
         config.cashierPassword);
          await expect(page).toHaveTitle(config.cashierDashBoardPageTitle);

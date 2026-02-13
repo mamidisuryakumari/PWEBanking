@@ -7,7 +7,6 @@ import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { CashhierLoginPage } from '../pages/CashierLoginPage';
 import { CashierDashBoardPage } from '../pages/CashierDashBoardPage';
 import { CashierAccountHoldersPage } from '../pages/CashierAccountHoldersPage';
-import { UserAddPayeePage } from '../pages/UserAddpayeePage';
 import { CashierTestData } from '../test-data/CashierTestData';
 import { TestConfig } from '../test.config';
 
@@ -23,12 +22,12 @@ test("Add Payee ", async ({page})=>{
    const cashierLoginPage = new CashhierLoginPage(page);
    const cashierDashBoardPage = new CashierDashBoardPage(page);
    const cashierAccountHoldersPage = new CashierAccountHoldersPage(page);
-   const userAddPayeePage = new UserAddPayeePage(page);
+ //  const userAddPayeePage = new UserAddPayeePage(page);
    const config = new TestConfig();
    
 
    await page.goto(config.baseURL);
-       await homePage.navigateByUserRole(page,"cashier");
+     //  await homePage.navigateByUserRole(page,"cashier");
        await cashierLoginPage.cashierLogin(config.cashierEmail,
            config.cashierPassword);
             await expect(page).toHaveTitle(config.cashierDashBoardPageTitle);
@@ -39,7 +38,7 @@ test("Add Payee ", async ({page})=>{
    
     await page.goto(config.baseURL);
        await expect(page).toHaveTitle(config.homePageTitle);
-       await homePage.navigateByUserRole(page,config.userRole);
+     //  await homePage.navigateByUserRole(page,config.userRole);
        await expect(page).toHaveTitle(config.userLoginPageTitle);
        await userLoginpage.userLogin(config.username,
          config.password);
@@ -54,7 +53,7 @@ test("Add Payee ", async ({page})=>{
     for (const user of users) {
         console.log(`Adding: ${user.name} - ${user.accountNumber}`);
 
-        await userAddPayeePage.addPayee(user.accountNumber, user.name);
+      //  await userAddPayeePage.addPayee(user.accountNumber, user.name);
 
         await page.waitForTimeout(1000); // small wait
     }

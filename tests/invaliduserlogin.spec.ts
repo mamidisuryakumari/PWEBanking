@@ -2,7 +2,7 @@ import{test,expect,Page} from'@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { UserLoginPage } from '../pages/UserLoginPage';
 import { UserRole } from '../pages/Enum';
-import fs  from 'fs';
+import * as fs from 'fs';
 import { TestConfig } from '../test.config';
 
 //reading data from json file
