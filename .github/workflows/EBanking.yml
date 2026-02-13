@@ -1,63 +1,39 @@
-name: BankMS Playwright Tests
-
+name: Playwright Tests
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
   pull_request:
-    branches: [main, dev]
-
+    branches: [main]
 jobs:
-  playwright-tests:
-    runs-on: ubuntu-latest
+  test:
+    timeout-minutes: 60
+    runs-on: windows-latest
 
-    # This creates a local database container for your tests
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: bankmsdb.sql
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
+    
     steps:
-    - name: Checkout repository
+    - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '24' # Good practice to specify version
-
+        node-version: lts/*
+    
     - name: Install dependencies
       run: npm ci
 
-   # Initialize the database with your SQL file
-    - name: Setup Database Schema
-      run: |
-        # We use -p"" or omit it if the password is truly empty
-        mysql -h 127.0.0.1 -u root bankmsdb < bankmsdb.sql
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
 
     - name: Run Playwright tests
       run: npx playwright test
-      env:
-        DB_HOST: 127.0.0.1
-        DB_USER: root
-        DB_PASS: ""
-        DB_NAME: bankmsdb
-
+      #run: npx playwright test --grep "@sanity"
+      #run: npm run test:sanity
+    
     - name: Upload Playwright HTML Report
-      uses: actions/upload-artifact@v4
       if: always()
+      uses: actions/upload-artifact@v4
       with:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-
-    - name: Upload Allure Results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: allure-results
-        path: allure-results/
