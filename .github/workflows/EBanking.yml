@@ -46,7 +46,7 @@ jobs:
         DB_USER: root
         DB_PASS: ""
         DB_NAME: bankmsdb
-        
+
     - name: Upload Playwright HTML Report
       uses: actions/upload-artifact@v4
       if: always()
