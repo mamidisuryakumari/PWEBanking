@@ -1,11 +1,34 @@
-import { randomUUID } from 'crypto';
+import { Dialog, Locator } from 'playwright';
+import path from 'path';
+import fs from 'fs';
 
 export class CommonUtils {
+
+    //generate random number
     static generateRandomNumber(min: number = 100, max: number = 999): number {
         if (min > max) {
             throw new Error("Minimum value should be less than or equal to maximum value");
         }
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    //Accept alert
+    static async acceptAlert(page: any) {
+        page.on('dialog:any', async (dialog: Dialog) => {
+            console.log(`Dialog message: ${dialog.message()}`);
+            await dialog.accept();
+        });
+    }
+    //file upload
+    static async uploadSingleFile(fileInput: Locator, fileName: string
+    ): Promise<void> {
+        const filePath = path.join(process.cwd(), fileName);
+
+        if (!fs.existsSync(filePath)) {
+            throw new Error(`File not found at path: ${filePath}`);
+        }
+
+        await fileInput.setInputFiles(filePath);
     }
 
 

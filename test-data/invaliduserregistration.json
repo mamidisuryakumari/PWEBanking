@@ -1,0 +1,45 @@
+[
+  {
+    "scenario": "Empty user firstname",
+    "userFirstName": "",
+    "userLastName": "M",
+    "userEmailId": "surya@gmail.com",
+    "userMobileNumber": "9876543210",
+    "userPassword": "surya",
+     "field": "userFirstName",
+    "expectedMessage": "Please fill out this field."
+  },
+  {
+     "scenario": "Empty user last name",
+    "userFirstName": "Surya",
+    "userLastName": "",
+    "userEmailId": "surya@gmail.com",
+    "userMobileNumber": "9876543210",
+    "userPassword": "surya",
+     "field": "userLastName",
+    "expectedMessage": "Please fill out this field."
+  },
+   
+  {
+    "scenario": "Invalid email format",
+    "userFirstName": "Surya",
+    "userLastName": "M",
+    "userEmailId": "suryagmail.com",
+    "userMobileNumber": "9876543210",
+    "userPassword": "surya",
+    "field": "userEmailId",
+   "expectedMessage": "Please include an '@' in the email address. 'suryagmail.com' is missing an '@'."
+    },
+
+    {
+        "scenario": "Invalid mobile number",
+    "userFirstName": "Surya",
+    "userLastName": "M",
+    "userEmailId": "surya@gmail.com",
+    "userMobileNumber": "surya",
+    "userPassword": "surya",
+    "field": "userMobileNumber",
+   "expectedMessage":"Please match the requested format."
+ }
+ 
+]

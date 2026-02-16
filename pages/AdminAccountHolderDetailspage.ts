@@ -26,18 +26,13 @@ export class AdminAccountHolderDetailsPage extends BasePage {
     async userAccountApproval(remark:string,initialAmount:string,approvedText:string):Promise<AdminNewAccountOpeningRequestPage> {
         await this.takeActionBtn.click();
         await this.remarkTextFld.fill(remark);
-        await this.statusDropdown.fill(approvedText);
+        await this.statusDropdown.selectOption(approvedText);
         await this.initialAmountTextFld.fill(initialAmount);
         await this.updateBtn.click();
         return new AdminNewAccountOpeningRequestPage(this.page);
     }
 
-    async accountApprovedAcceptAlert(){
-        await this.page.on('dialog', async dialog => {
-            console.log(`Dialog message: ${dialog.message()}`);
-            await dialog.accept();
-        });
-    }
+   
 
 
 }

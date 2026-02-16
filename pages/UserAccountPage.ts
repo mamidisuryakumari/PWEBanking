@@ -1,8 +1,13 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from "./BasePage";
-import { UserTestData } from '../test-data/UserTestData';
+import { TestConfig } from '../test.config';
+import path from 'path';
+
 
 export class UserAccountPage extends BasePage {
+
+     config = new TestConfig();
+
     readonly page: Page;
     readonly accountOpeningMenu: Locator;
     readonly addressProofDropDown: Locator;
@@ -41,15 +46,18 @@ export class UserAccountPage extends BasePage {
     }
 
 
-    async userAccountOpen(addressProofIdNumber: string, panCardNumber: string, address: string): Promise<UserAccountPage> {
-        await this.addressProofDropDown.fill(UserTestData.userAccountOpeningDetails.selectAadhaarCard);
+    async userAccountOpen(addressProofIdNumber: string, 
+        userAadhaarCardImg:string,
+        userPanCardImg:string,panCardNumber: string, address: string,
+    dob:string
+    ): Promise<UserAccountPage> {
+        await this.addressProofDropDown.selectOption(this.config.selectAadhaarCard);
         await this.addressProofIdNumberTextFld.fill(addressProofIdNumber);
-        await this.uploadAddressProof.fill(UserTestData.userAccountOpeningDetails.userAadhaarCardImg);
-        await this.uploadPanCard.fill(UserTestData.userAccountOpeningDetails.userPanCardImg);
+       await this.uploadAddressProof.setInputFiles(userAadhaarCardImg);
+        await this.uploadPanCard.setInputFiles(userPanCardImg);
         await this.pancardNumberTextFld.fill(panCardNumber),
             await this.addressTextFld.fill(address),
-            await this.dobfld.fill("1990-12-09");
-          //  await ElementUtils.enterDate(this.dobfld, UserTestData.userAccountOpeningDetails.userDOB),
+            await this.dobfld.fill(dob);
             await this.acceptTermCheckbox.click(),
             await this.submitBtn.click();
         return this;

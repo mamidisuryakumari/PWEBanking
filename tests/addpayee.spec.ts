@@ -2,12 +2,10 @@ import {test,expect} from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { UserLoginPage } from '../pages/UserLoginPage';
 import { UserDashBoardPage } from '../pages/UserDashBoardPage';
-import  { UserTestData } from '../test-data/UserTestData';
 import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { CashhierLoginPage } from '../pages/CashierLoginPage';
 import { CashierDashBoardPage } from '../pages/CashierDashBoardPage';
 import { CashierAccountHoldersPage } from '../pages/CashierAccountHoldersPage';
-import { CashierTestData } from '../test-data/CashierTestData';
 import { TestConfig } from '../test.config';
 
   

@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
-import { UserTestData } from '../test-data/UserTestData';
 import { UserLoginPage } from '../pages/UserLoginPage';
 import { UserRegistrationPage } from '../pages/UserRegistrationPage';
 import { CommonUtils } from '../utils/CommonUtils';
@@ -50,7 +49,7 @@ test("User Registration", async ({ page }) => {
   TestContext.userPassword = userPassword;
 
 
-    await userRegistrationPage.registrationAcceptAlert();
+    await CommonUtils.acceptAlert(page);
 
   await expect(page).toHaveTitle(config.userLoginPageTitle);
 

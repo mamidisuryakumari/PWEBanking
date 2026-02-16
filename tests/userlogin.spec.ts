@@ -1,7 +1,6 @@
 import{test,expect} from'@playwright/test';
 import { UserLoginPage } from '../pages/UserLoginPage';
 import { HomePage } from '../pages/HomePage';
-import { UserTestData } from '../test-data/UserTestData';
 import { TestConfig } from '../test.config';
 import { UserRole } from '../pages/Enum';
 

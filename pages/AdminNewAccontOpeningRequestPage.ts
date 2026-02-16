@@ -1,4 +1,4 @@
-import { AdminTestData } from "../test-data/AdminTestData";
+
 import { AdminAccountHolderDetailsPage } from "./AdminAccountHolderDetailspage";
 import { BasePage } from "./BasePage";
 import { Page } from '@playwright/test';
@@ -35,13 +35,15 @@ export class AdminNewAccountOpeningRequestPage extends BasePage {
 
             const name = userRequestname.trim();
             console.log(`Searching for: ${name}`);
-         //   await ElementUtils.enterText(this.searchTextFld, name);
-          //  await ElementUtils.clickElement(this.viewLink);
-            
+            await this.viewLink.click();
             break;
         } 
         return new AdminAccountHolderDetailsPage(this.page);
     }
+
+    
+    
+      
 
 
 }

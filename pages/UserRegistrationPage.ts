@@ -1,6 +1,7 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from './BasePage';
 import { UserLoginPage } from './UserLoginPage';
+import { CommonUtils } from '../utils/CommonUtils';
 
 
 export class UserRegistrationPage extends BasePage {
@@ -35,12 +36,7 @@ async userRegistration(userFirstName: string, userLastName: string,
         return new UserLoginPage(this.page);
     }
 
-    async registrationAcceptAlert(){
-        await this.page.on('dialog', async dialog => {
-            console.log(`Dialog message: ${dialog.message()}`);
-            await dialog.accept();
-        });
-    }
+    
 
    
 

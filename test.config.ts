@@ -11,6 +11,15 @@ export class TestConfig {
   userMobileNumber = "9876543210";
   userPassword = "surya@123";
 
+  //user account opening details
+  selectAadhaarCard = "Adhar Card";
+        userAddressProofIdNumber ="1245 4586 2354 5896";
+        userPanCardNumber = "ABCDE1234F";
+        userAddress = "Manikonda,Hyderabad";
+        userDOB = "1990-12-09";
+        userAadhaarCardPath="data/Aadhaarcard.png";
+        userPanCardPath = "data/PanCard.png";
+
   homePageTitle = "e-Banking System";
 
   userLoginPageTitle = "e-Banking | User Login";
@@ -30,9 +39,10 @@ export class TestConfig {
   cashierRole = "cashier";
 
   //Admin
-  adminEmail = "admin@gmail.com";
-  adminPassword = "admin@123";
+
   adminRole = "admin";
+   adminEmail = "admin@gmail.com";
+  adminPassword = "admin@123";
 
   adminLoginPageTitle = "e-Banking | Admin";
   adminDashboardPageTitle = "e-Banking | Dashboard";
@@ -41,7 +51,7 @@ export class TestConfig {
 
   adminAccountHolderDetailsPageTitle = "e-Banking | Admin";
 
-  newUserAccountRequestName = "Surya123414";
+ // newUserAccountRequestName = "Surya123414";
 
   takeActionLabelText = "";
 

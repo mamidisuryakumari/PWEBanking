@@ -3,11 +3,11 @@ import { HomePage } from '../pages/HomePage';
 import { UserLoginPage } from '../pages/UserLoginPage';
 import { UserDashBoardPage } from '../pages/UserDashBoardPage';
 import { UserRegistrationPage } from '../pages/UserRegistrationPage';
-import { UserTestData } from '../test-data/UserTestData';
 import { CommonUtils } from '../utils/CommonUtils';
 import { TestContext } from '../pages/TestContext';
 import { UserAccountPage } from '../pages/UserAccountPage';
 import { TestConfig } from '../test.config';
+import { UserRole } from '../pages/Enum';
 
 
 test("User Account Opening", async ({ page }) => {
@@ -21,26 +21,26 @@ test("User Account Opening", async ({ page }) => {
 
     await page.goto(config.baseURL);
     await expect(page).toHaveTitle(config.homePageTitle);
-    await homePage.navigateByUserRole(page,UserRole.USER);
+    await homePage.navigateByUserRole(page, UserRole.USER);
     await expect(page).toHaveTitle(config.userLoginPageTitle);
 
     await userLoginPage.clickCreateAccountLink();
     await expect(page).toHaveTitle("e-Banking");
 
-    const email = UserTestData.validUserRegistrationDetails.userEmailId;
+    const email = config.userEmailId;
     const random = CommonUtils.generateRandomNumber();
 
     const userEmail = email.replace('@gmail.com', `${random}@gmail.com`);
 
 
-    const userPassword = `${UserTestData.validUserRegistrationDetails.userPassword}${CommonUtils.generateRandomNumber()}`;
+    const userPassword = `${config.userPassword}${CommonUtils.generateRandomNumber()}`;
 
     //user registration
     await userRegistrationPage.userRegistration(
-        `${UserTestData.validUserRegistrationDetails.userFirstName}${CommonUtils.generateRandomNumber()}`,
-        UserTestData.validUserRegistrationDetails.userLastName,
+        `${config.userFirstName}${CommonUtils.generateRandomNumber()}`,
+        config.userLastName,
         userEmail,
-        `${UserTestData.validUserRegistrationDetails.userMobileNumber}${CommonUtils.generateRandomMobileNumber()}`,
+        `${config.userMobileNumber}${CommonUtils.generateRandomMobileNumber()}`,
         userPassword
     );
 
@@ -49,9 +49,6 @@ test("User Account Opening", async ({ page }) => {
     console.log(TestContext.userEmail);
     TestContext.userPassword = userPassword;
     console.log(TestContext.userPassword);
-
-
-    await userRegistrationPage.registrationAcceptAlert();
 
     await expect(page).toHaveTitle(config.userLoginPageTitle);
 
@@ -65,19 +62,20 @@ test("User Account Opening", async ({ page }) => {
 
     await expect(page).toHaveTitle(config.userAccountOpenPageTitle);
 
-    await userAccountPage.userAccountOpenAcceptAlert();
+    await CommonUtils.acceptAlert(page);
 
     //user account open
-    
-    await userAccountPage.userAccountOpen(UserTestData.userAccountOpeningDetails.userAddressProofIdNumber,
-        `${UserTestData.userAccountOpeningDetails.userPanCardNumber}${CommonUtils.generateRandomPANNumber}`,
-        UserTestData.userAccountOpeningDetails.userAddress
+
+    await userAccountPage.userAccountOpen(
+        config.userAddressProofIdNumber,
+        config.userAadhaarCardPath,
+        config.userPanCardPath,
+        `${config.userPanCardNumber}${CommonUtils.generateRandomPANNumber}`,
+        config.userAddress,
+        config.userDOB
     );
 
-    
 
-    await expect(userAccountPage.accountDetailsLabel).toHaveText(config.userAccountDetailsText);
-
-
+ await expect(userAccountPage.accountDetailsLabel).toHaveText(config.userAccountDetailsText);
 
 });
