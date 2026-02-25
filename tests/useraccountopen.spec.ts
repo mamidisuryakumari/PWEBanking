@@ -18,21 +18,18 @@ test("User Account Opening", async ({ page }) => {
     const userDashBoardPage = new UserDashBoardPage(page);
     const userAccountPage = new UserAccountPage(page);
     const config = new TestConfig();
+    const testContext = new TestContext();
 
     await page.goto(config.baseURL);
     await expect(page).toHaveTitle(config.homePageTitle);
     await homePage.navigateByUserRole(page, UserRole.USER);
     await expect(page).toHaveTitle(config.userLoginPageTitle);
-
     await userLoginPage.clickCreateAccountLink();
     await expect(page).toHaveTitle("e-Banking");
 
     const email = config.userEmailId;
     const random = CommonUtils.generateRandomNumber();
-
     const userEmail = email.replace('@gmail.com', `${random}@gmail.com`);
-
-
     const userPassword = `${config.userPassword}${CommonUtils.generateRandomNumber()}`;
 
     //user registration
@@ -45,27 +42,19 @@ test("User Account Opening", async ({ page }) => {
     );
 
     //setting the values
-    TestContext.userEmail = userEmail;
-    console.log(TestContext.userEmail);
-    TestContext.userPassword = userPassword;
-    console.log(TestContext.userPassword);
+    testContext.email = userEmail;
+    testContext.password = userPassword;
 
     await expect(page).toHaveTitle(config.userLoginPageTitle);
 
     //user login
-
-    userLoginPage.userLogin(TestContext.userEmail, TestContext.userPassword);
-
+    userLoginPage.userLogin(testContext.email, testContext.password);
     await expect(userDashBoardPage.newUserText).toHaveText(config.expectedNewUserText);
-
     await userAccountPage.clickOnAccountOpeningMenu();
-
     await expect(page).toHaveTitle(config.userAccountOpenPageTitle);
-
     await CommonUtils.acceptAlert(page);
 
     //user account open
-
     await userAccountPage.userAccountOpen(
         config.userAddressProofIdNumber,
         config.userAadhaarCardPath,
@@ -76,6 +65,6 @@ test("User Account Opening", async ({ page }) => {
     );
 
 
- await expect(userAccountPage.accountDetailsLabel).toHaveText(config.userAccountDetailsText);
+    await expect(userAccountPage.accountDetailsLabel).toHaveText(config.userAccountDetailsText);
 
 });

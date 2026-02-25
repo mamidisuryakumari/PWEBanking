@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
-  retries:1,
+  retries:0,
   workers: 1,
   //forbidOnly: !!process.env.CI,
   //retries: process.env.CI ? 2 : 0,
@@ -22,14 +22,18 @@ export default defineConfig({
     viewport: { width: 1280, height: 720 }, // Set default viewport size for consistency 
     ignoreHTTPSErrors: true, // Ignore SSL errors if necessary 
     permissions: ['geolocation'], // Set necessary permissions for geolocation-based tests 
-  },
 
+  },
+  
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome']
+       },
     },
+
+
 
     /* {
        name: 'firefox',

@@ -1,7 +1,8 @@
-import { test, expect } from '@playwright/test';
+import{test,expect} from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { UserLoginPage } from '../pages/UserLoginPage';
 import { UserDashBoardPage } from '../pages/UserDashBoardPage';
+import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { CashhierLoginPage } from '../pages/CashierLoginPage';
 import { CashierDashBoardPage } from '../pages/CashierDashBoardPage';
 import { CashierAccountHoldersPage } from '../pages/CashierAccountHoldersPage';
@@ -10,54 +11,12 @@ import { UserAddPayeePage } from '../pages/UserAddPayeePage';
 import { UserRole } from '../pages/Enum';
 import { TestContext } from '../pages/TestContext';
 import { UserManagePayeePage } from '../pages/UserManagePayeePage';
+import { UserTransferAmountPage } from '../pages/UserTransferAmountPage';
 
 
-test("Existing account holder validation", async ({ page }) => {
-  const testContext = new TestContext();
-  const homePage = new HomePage(page);
-  const userLoginpage = new UserLoginPage(page);
-  const userDashBoardPage = new UserDashBoardPage(page);
-  const cashierLoginPage = new CashhierLoginPage(page);
-  const cashierDashBoardPage = new CashierDashBoardPage(page);
-  const cashierAccountHoldersPage = new CashierAccountHoldersPage(page, testContext);
-  const userAddPayeePage = new UserAddPayeePage(page);
-  const config = new TestConfig();
+test("Transfer amount to payee",async({page}) =>{
 
-
-
-  await page.goto(config.baseURL);
-  await homePage.navigateByUserRole(page, UserRole.CASHIER);
-  await cashierLoginPage.cashierLogin(config.cashierEmail,
-    config.cashierPassword);
-  await expect(page).toHaveTitle(config.cashierDashBoardPageTitle);
-  await cashierDashBoardPage.navigateToAccountHoldersPage();
-  await expect(page).toHaveTitle(config.cashierAccountHoldersPageTitle);
-
-  await cashierAccountHoldersPage.getAllAccountHolders();
-
-  //user login and add payee
-  await page.goto(config.userLoginPageURL);
-  await expect(page).toHaveTitle(config.userLoginPageTitle);
-  await userLoginpage.userLogin(config.username,
-    config.password);
-  await expect(page).toHaveTitle(config.userDashBoardPageTitle);
-
-  await userDashBoardPage.navigateToAddPayeePage();
-  await expect(page).toHaveTitle(config.userAddPayeePageTitle);
-
-  page.on('dialog', async (dialog) => {
-    console.log(`Dialog message: ${dialog.message()}`);
-    await expect(dialog.message()).toBe(config.userAlreadyAddedAlertMsg);
-    await dialog.accept();
-  });
-
-  await userAddPayeePage.addPayee(testContext.payeeAccountNumber, testContext.payeeHolderName);
-
-});
-
-test("Add payee to user account", async ({ page }) => {
-
-  const testContext = new TestContext();
+   const testContext = new TestContext();
   const homePage = new HomePage(page);
   const userLoginpage = new UserLoginPage(page);
   const userDashBoardPage = new UserDashBoardPage(page);
@@ -67,6 +26,7 @@ test("Add payee to user account", async ({ page }) => {
   const userAddPayeePage = new UserAddPayeePage(page);
   const config = new TestConfig();
   const userManagePayeePage = new UserManagePayeePage(page);
+  const userTransferAmountPage = new UserTransferAmountPage(page);
 
   await page.goto(config.baseURL);
   //cashier login
@@ -112,7 +72,8 @@ test("Add payee to user account", async ({ page }) => {
   });
 
   await userAddPayeePage.addPayee(account.accNumber, account.name);
-
+  testContext.payeeAccountNumber = account.accNumber;
+    console.log("Added payee account number: ", testContext.payeeAccountNumber);
   await page.waitForTimeout(500);
 
   if (dialogMessage.includes(config.userPayeeAddedSuccessMsg)) {
@@ -125,7 +86,15 @@ test("Add payee to user account", async ({ page }) => {
     continue; 
   }
 }
+
+await userManagePayeePage.navigateToUserTransferAmountPage(testContext.payeeAccountNumber);
+
+page.on('dialog', async (dialog) =>{
+const message = dialog.message();
+await expect(message).toContain(config.userTransferAmountAlertMsg);
+await dialog.accept();
 });
-
-
-
+    //tranfer amount to payee
+    await userTransferAmountPage.transferAmountToPayee(config.transferAmount);
+    console.log("Amount added to payee successfully");
+});

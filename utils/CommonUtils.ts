@@ -19,6 +19,13 @@ export class CommonUtils {
             await dialog.accept();
         });
     }
+    //Capture alert msg
+    static async captureAlertMessage(page: any): Promise<string> {
+        const dialog = await page.waitForEvent('dialog');
+        const alertMessage = dialog.message();
+        console.log(`Dialog message: ${alertMessage}`);
+        return alertMessage;
+    }
     //file upload
     static async uploadSingleFile(fileInput: Locator, fileName: string
     ): Promise<void> {

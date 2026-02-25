@@ -8,19 +8,10 @@ export class AdminNewAccountOpeningRequestPage extends BasePage {
     readonly searchTextFld;
     readonly viewLink;
 
-
-
     constructor(page: Page) {
         super(page);
         this.searchTextFld = page.getByRole("searchbox", { name: 'search' });
-        this.viewLink = page.getByRole("link", { name: 'View' });
-
-    }
-
-    async navigateToAdminAccountHolderDetailsPage() {
-      //  await ElementUtils.enterText(this.searchTextFld, AdminTestData.newUserAccountRequestName);
-
-
+        this.viewLink = page.getByRole("link", { name: 'View' }).first();
     }
 
     async searchUserAccount() {
@@ -31,19 +22,13 @@ export class AdminNewAccountOpeningRequestPage extends BasePage {
             console.warn("No user account records available");
             return null;
         }
- for (const userRequestname of userRequestNames) {
-
+        for (const userRequestname of userRequestNames) {
             const name = userRequestname.trim();
             console.log(`Searching for: ${name}`);
             await this.viewLink.click();
             break;
-        } 
+        }
         return new AdminAccountHolderDetailsPage(this.page);
     }
-
-    
-    
-      
-
 
 }

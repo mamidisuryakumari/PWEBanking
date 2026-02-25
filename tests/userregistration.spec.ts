@@ -18,11 +18,12 @@ test("User Registration", async ({ page }) => {
   const userRegistrationPage = new UserRegistrationPage(page);
   const userDashBoardPage = new UserDashBoardPage(page);
   const config = new TestConfig();
+  const testContext = new TestContext();
 
-   await page.goto(config.baseURL);
-   await expect(page).toHaveTitle(config.homePageTitle);
+  await page.goto(config.baseURL);
+  await expect(page).toHaveTitle(config.homePageTitle);
 
- await homePage.navigateByUserRole(page,UserRole.USER);
+  await homePage.navigateByUserRole(page, UserRole.USER);
   await expect(page).toHaveTitle(config.userLoginPageTitle);
 
   await userLoginPage.clickCreateAccountLink();
@@ -31,11 +32,11 @@ test("User Registration", async ({ page }) => {
   const email = config.userEmailId;
   const random = CommonUtils.generateRandomNumber();
 
-  const userEmail = email.replace('@gmail.com',`${random}@gmail.com`);
+  const userEmail = email.replace('@gmail.com', `${random}@gmail.com`);
 
 
   const userPassword = `${config.userPassword}${CommonUtils.generateRandomNumber()}`;
-  
+
   await userRegistrationPage.userRegistration(
     `${config.userFirstName}${CommonUtils.generateRandomNumber()}`,
     config.userLastName,
@@ -45,19 +46,19 @@ test("User Registration", async ({ page }) => {
   );
 
   //setting the values
-  TestContext.userEmail = userEmail;
-  TestContext.userPassword = userPassword;
+  testContext.email = userEmail;
+  testContext.password = userPassword;
 
 
-    await CommonUtils.acceptAlert(page);
+  await CommonUtils.acceptAlert(page);
 
   await expect(page).toHaveTitle(config.userLoginPageTitle);
 
-  userLoginPage.userLogin(TestContext.userEmail,TestContext.userPassword);
+  userLoginPage.userLogin(testContext.email, testContext.password);
 
-  
-await expect(userDashBoardPage.newUserText).toHaveText('Alert ! New User, Account not opend yet');
 
-  
+  await expect(userDashBoardPage.newUserText).toHaveText('Alert ! New User, Account not opend yet');
+
+
 });
 

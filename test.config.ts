@@ -1,6 +1,7 @@
 export class TestConfig {
   //User
   baseURL: string = 'http://localhost/bankms/';
+  userLoginPageURL: string = 'http://localhost/bankms/user/';
   username: string = 'user@gmail.com';
   password: string = 'user@123';
 
@@ -13,12 +14,12 @@ export class TestConfig {
 
   //user account opening details
   selectAadhaarCard = "Adhar Card";
-        userAddressProofIdNumber ="1245 4586 2354 5896";
-        userPanCardNumber = "ABCDE1234F";
-        userAddress = "Manikonda,Hyderabad";
-        userDOB = "1990-12-09";
-        userAadhaarCardPath="data/Aadhaarcard.png";
-        userPanCardPath = "data/PanCard.png";
+  userAddressProofIdNumber = "1245 4586 2354 5896";
+  userPanCardNumber = "ABCDE1234F";
+  userAddress = "Manikonda,Hyderabad";
+  userDOB = "1990-12-09";
+  userAadhaarCardPath = "data/Aadhaarcard.png";
+  userPanCardPath = "data/PanCard.png";
 
   homePageTitle = "e-Banking System";
 
@@ -35,13 +36,31 @@ export class TestConfig {
 
   userAddPayeePageTitle = "e-Banking | User";
 
+  userManagePayeePageTitle = "e-Banking | User";
+
   userRole = "user";
   cashierRole = "cashier";
 
+  userPayeeAddedSuccessMsg = "Payee / beneficiary Account detail has been added.";
+  userAlreadyAddedAlertMsg = "Account Number Already Added";
+  userDeletePayeeAlertMsg = "Do you really want to Delete ?";
+  userDeletePayeeSecondAlertMsgs = "Data deleted";
+  userTransferAmountAlertMsg = "Transaction Details has been updated";
+  userLogoutMsg = 'Select "Logout" below if you are ready to end your current session.';
+
+  transferAmount = "100";
+
+  //user profile
+  userUpdateFirstName = "User";
+  userUpdateLastName = "U";
+  UserUpdateMobileNumber = "9963545615";
+  userProfileUpdateAlertMsg = "Profile has been updated";
   //Admin
 
+  adminLoginPageURL = "http://localhost/bankms/admin/login.php";
+
   adminRole = "admin";
-   adminEmail = "admin@gmail.com";
+  adminEmail = "admin@gmail.com";
   adminPassword = "admin@123";
 
   adminLoginPageTitle = "e-Banking | Admin";
@@ -51,7 +70,7 @@ export class TestConfig {
 
   adminAccountHolderDetailsPageTitle = "e-Banking | Admin";
 
- // newUserAccountRequestName = "Surya123414";
+  // newUserAccountRequestName = "Surya123414";
 
   takeActionLabelText = "";
 
@@ -66,6 +85,17 @@ export class TestConfig {
   cashierPassword = "cashier125";
 
   cashierDashBoardPageTitle = "e-Banking | Dashboard";
-  casshierAccountHoldersPageTitle = "e-Banking | Account Holders";
+  cashierAccountHoldersPageTitle = "e-Banking | Approved Acoounts"
+
+  userAccountNumber = "571991801";
+  transactionAlertMsg = "Transcation done successfully";
+  cashierUserDetailsPagetitle = "e-Banking System | Cashier";
+
+  depositAmount = "100";
+  transactionType = "Cash";
+
+  withdrawAmount = "100";
+  
+
 
 }

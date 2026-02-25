@@ -1,20 +1,38 @@
-export class TestContext{
-    static userEmail:string;
-    static userPassword:string;
+export class TestContext {
+  private userEmail!: string;
+  private userPassword!: string;
+  private userPayeeAccountHolderName!: string;
+  private userPayeeaccountNumber!: string;
 
-    static set email(value: string) {
+  set email(value: string) {
     this.userEmail = value;
   }
 
-  static get email(): string {
+  get email(): string {
     return this.userEmail;
   }
 
-   static set password(value: string) {
+  set password(value: string) {
     this.userPassword = value;
   }
 
-  static get password(): string {
+  get password(): string {
     return this.userPassword;
+  }
+
+  set payeeHolderName(value: string) {
+    this.userPayeeAccountHolderName = value;
+  }
+
+  get payeeHolderName(): string {
+    return this.userPayeeAccountHolderName;
+  }
+
+  set payeeAccountNumber(value: string) {
+    this.userPayeeaccountNumber = value;
+  }
+
+  get payeeAccountNumber(): string {
+    return this.userPayeeaccountNumber;
   }
 }
