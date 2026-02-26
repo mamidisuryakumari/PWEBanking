@@ -95,7 +95,13 @@ export class TestConfig {
   transactionType = "Cash";
 
   withdrawAmount = "100";
-  
+
+  cashierTransactionReportPageTitle = "e-Banking | Cashier";
+  transactionHistorySuccessMsg = "Transaction History RahulKumar (#873982407 ) from";
+  fromDate = "2024-01-01";
+  toDate = "2026-02-26";
+
+  selectAccountHolderName = "RahulKumar (#873982407)";
 
 
 }
