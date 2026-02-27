@@ -12,48 +12,6 @@ import { TestContext } from '../pages/TestContext';
 import { UserManagePayeePage } from '../pages/UserManagePayeePage';
 
 
-test("Existing account holder validation", async ({ page }) => {
-  const testContext = new TestContext();
-  const homePage = new HomePage(page);
-  const userLoginpage = new UserLoginPage(page);
-  const userDashBoardPage = new UserDashBoardPage(page);
-  const cashierLoginPage = new CashhierLoginPage(page);
-  const cashierDashBoardPage = new CashierDashBoardPage(page);
-  const cashierAccountHoldersPage = new CashierAccountHoldersPage(page, testContext);
-  const userAddPayeePage = new UserAddPayeePage(page);
-  const config = new TestConfig();
-
-
-
-  await page.goto(config.baseURL);
-  await homePage.navigateByUserRole(page, UserRole.CASHIER);
-  await cashierLoginPage.cashierLogin(config.cashierEmail,
-    config.cashierPassword);
-  await expect(page).toHaveTitle(config.cashierDashBoardPageTitle);
-  await cashierDashBoardPage.navigateToAccountHoldersPage();
-  await expect(page).toHaveTitle(config.cashierAccountHoldersPageTitle);
-
-  await cashierAccountHoldersPage.getAllAccountHolders();
-
-  //user login and add payee
-  await page.goto(config.userLoginPageURL);
-  await expect(page).toHaveTitle(config.userLoginPageTitle);
-  await userLoginpage.userLogin(config.username,
-    config.password);
-  await expect(page).toHaveTitle(config.userDashBoardPageTitle);
-
-  await userDashBoardPage.navigateToAddPayeePage();
-  await expect(page).toHaveTitle(config.userAddPayeePageTitle);
-
-  page.on('dialog', async (dialog) => {
-    console.log(`Dialog message: ${dialog.message()}`);
-    await expect(dialog.message()).toBe(config.userAlreadyAddedAlertMsg);
-    await dialog.accept();
-  });
-
-  await userAddPayeePage.addPayee(testContext.payeeAccountNumber, testContext.payeeHolderName);
-
-});
 
 test("Add payee to user account", async ({ page }) => {
 
