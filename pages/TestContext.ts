@@ -4,6 +4,9 @@ export class TestContext {
   private userPayeeAccountHolderName!: string;
   private userPayeeaccountNumber!: string;
 
+  private cEmployeeId!: string;
+  private cPassword!: string;
+
   set email(value: string) {
     this.userEmail = value;
   }
@@ -34,5 +37,21 @@ export class TestContext {
 
   get payeeAccountNumber(): string {
     return this.userPayeeaccountNumber;
+  }
+
+  set cashierEmployeeId(value: string) {
+    this.cEmployeeId = value;
+  }
+
+  get cashierEmployeeId():string{
+    return this.cEmployeeId;
+  }
+
+  set cashierPassword(value:string){
+    this.cPassword = value;
+  }
+
+  get cashierPassword():string{
+    return this.cPassword;
   }
 }

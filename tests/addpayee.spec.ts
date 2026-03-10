@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect} from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { UserLoginPage } from '../pages/UserLoginPage';
 import { UserDashBoardPage } from '../pages/UserDashBoardPage';
@@ -13,7 +13,7 @@ import { UserManagePayeePage } from '../pages/UserManagePayeePage';
 
 
 
-test("Add payee to user account", async ({ page }) => {
+test("Add payee to user account", async ({page}) => {
 
   const testContext = new TestContext();
   const homePage = new HomePage(page);

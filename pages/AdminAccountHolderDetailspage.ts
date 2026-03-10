@@ -23,7 +23,7 @@ export class AdminAccountHolderDetailsPage extends BasePage {
     }
 
 
-    async userAccountApproval(remark:string,initialAmount:string,approvedText:string):Promise<AdminNewAccountOpeningRequestPage> {
+    async userAccountApproval(remark: string, initialAmount: string, approvedText: string): Promise<AdminNewAccountOpeningRequestPage> {
         await this.takeActionBtn.click();
         await this.remarkTextFld.fill(remark);
         await this.statusDropdown.selectOption(approvedText);
@@ -32,7 +32,12 @@ export class AdminAccountHolderDetailsPage extends BasePage {
         return new AdminNewAccountOpeningRequestPage(this.page);
     }
 
-   
+    async userAccountReject(remark: string, rejectedText: string) {
+        await this.takeActionBtn.click();
+        await this.remarkTextFld.fill(remark);
+        await this.statusDropdown.selectOption(rejectedText);
+        await this.updateBtn.click();
+    }
 
 
 }

@@ -78,7 +78,26 @@ export class TestConfig {
 
   approvedStatus = "Approved";
 
+  rejectedStatus = "Rejected";
+
   initialAmount = "10000";
+
+  remarkAlertSuccessMessage = "Remark has been updated";
+  adminAddCashierPageTitle = "SB Admin 2 - Buttons";
+
+  //add chashier details
+  cashierFName = "cashier";
+  cashierLName = "cashier";
+  cashierEmailId = "cashier@gmail.com";
+  cashierGender = "Male";
+  cashierDob = "1990-03-02";
+  cashierEmployeeId = "cashier111";
+  cashierAddressText = "4-931 , flat number 402 , Baba Nivas,Manikonda";
+  cashierPswd = "cashier11";
+
+  addCashierAlertSuccessMsg = "Cashier detail has been added.";
+  cashierLoginPageURL = "http://localhost/bankms/cashier/login.php";
+  cashierLoginPageTitle = "e-Banking | Cashier";
 
   //Cashier
   cashierEmail = "cashier125";
@@ -102,6 +121,13 @@ export class TestConfig {
   toDate = "2026-02-26";
 
   selectAccountHolderName = "RahulKumar (#873982407)";
+  cashierFirstName = "Cashier";
+  cashierLastName = "M";
+  cashierAddress = "4-931 , flat number 402 , Baba Nivas,Manikonda";
+  cashierProfilePageTitle = "e-Banking | Cashier Profile";
+  cashierProfileUpdateSuccessMsg = "Cashier detail has been updated.";
+
+
 
 
 }
