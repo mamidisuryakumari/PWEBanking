@@ -1,4 +1,4 @@
-import { BasePage } from "./BasePage";
+import { BasePage } from "../BasePage";
 import { Page,Locator } from '@playwright/test';
 
 export class AdminApprovedAccountOpeningRequestPage extends BasePage {

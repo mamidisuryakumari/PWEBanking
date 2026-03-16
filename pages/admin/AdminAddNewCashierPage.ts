@@ -1,18 +1,21 @@
 import { th } from "@faker-js/faker/.";
-import { BasePage } from "./BasePage";
+import { BasePage } from "../BasePage";
 import { Page, Locator } from "@playwright/test";
+import { CashierDetailsPage } from "./CashierDetailsPage";
 
 export class AdminAddNewCashierPage extends BasePage {
-    readonly cashierFirstNameTextFld: Locator;
-    readonly cashierLastNameTextFld: Locator;
-    readonly cashierMobileNumberTextFld: Locator;
-    readonly cashierEmailTextFld: Locator;
-    readonly cashierGenderDropdown: Locator;
-    readonly cashierDobFld: Locator;
-    readonly cashierEmployeeIdTextFld: Locator;
-    readonly cashierAddressTextFld: Locator;
-    readonly cashierPasswordTextFld: Locator;
-    readonly cashierAddBtnFld: Locator;
+    private readonly cashierFirstNameTextFld: Locator;
+    private readonly cashierLastNameTextFld: Locator;
+    private readonly cashierMobileNumberTextFld: Locator;
+    private readonly cashierEmailTextFld: Locator;
+    private readonly cashierGenderDropdown: Locator;
+    private readonly cashierDobFld: Locator;
+    private readonly cashierEmployeeIdTextFld: Locator;
+    private readonly cashierAddressTextFld: Locator;
+    private readonly cashierPasswordTextFld: Locator;
+    private readonly cashierAddBtnFld: Locator;
+    private readonly cashierMenu: Locator;
+    private readonly manageCashierLink: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -26,6 +29,9 @@ export class AdminAddNewCashierPage extends BasePage {
         this.cashierAddressTextFld = page.locator('[name="address"]');
         this.cashierPasswordTextFld = page.locator('input[name="password"]');
         this.cashierAddBtnFld = page.getByRole("button", { name: 'Add' });
+
+        this.cashierMenu = page.getByText("Cashier", { exact: true });
+        this.manageCashierLink = page.getByRole("link", { name: 'Manage Cashier' });
     }
 
     async addCashier(cashierFirstName: string, cashierLastName: string,
@@ -42,5 +48,11 @@ export class AdminAddNewCashierPage extends BasePage {
         await this.cashierPasswordTextFld.fill(cashierPassword);
         await this.cashierAddBtnFld.click();
         return this;
+    }
+
+    async navigateToCashierDetailsPage() {
+        await this.cashierMenu.click();
+        await this.manageCashierLink.click();
+        return new CashierDetailsPage(this.page);
     }
 }

@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
-import { AdminLoginPage } from '../pages/AdminLoginPage';
-import { AdminDashboardPage } from '../pages/AdminDashboardPage';
+import { AdminLoginPage } from '../pages/admin/AdminLoginPage';
+import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage';
 import { UserAccountPage } from '../pages/UserAccountPage';
-import { AdminAccountHolderDetailsPage } from '../pages/AdminAccountHolderDetailspage';
+import { AdminAccountHolderDetailsPage } from '../pages/admin/AdminAccountHolderDetailspage';
 import { TestConfig } from '../test.config';
 import { UserRegistrationPage } from '../pages/UserRegistrationPage';
 import { TestContext } from '../pages/TestContext';
@@ -11,7 +11,7 @@ import { UserLoginPage } from '../pages/UserLoginPage';
 import { UserDashBoardPage } from '../pages/UserDashBoardPage';
 import { UserRole } from '../pages/Enum';
 import { CommonUtils } from '../utils/CommonUtils';
-import { AdminNewAccountOpeningRequestPage } from '../pages/AdminNewAccontOpeningRequestPage';
+import { AdminNewAccountOpeningRequestPage } from '../pages/admin/AdminNewAccontOpeningRequestPage';
 
 
 test("Admin reject user Request", async ({ page }) => {

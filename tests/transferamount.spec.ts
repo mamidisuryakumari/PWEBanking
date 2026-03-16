@@ -2,7 +2,7 @@ import{test,expect} from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { UserLoginPage } from '../pages/UserLoginPage';
 import { UserDashBoardPage } from '../pages/UserDashBoardPage';
-import { AdminLoginPage } from '../pages/AdminLoginPage';
+import { AdminLoginPage } from '../pages/admin/AdminLoginPage';
 import { CashhierLoginPage } from '../pages/CashierLoginPage';
 import { CashierDashBoardPage } from '../pages/CashierDashBoardPage';
 import { CashierAccountHoldersPage } from '../pages/CashierAccountHoldersPage';

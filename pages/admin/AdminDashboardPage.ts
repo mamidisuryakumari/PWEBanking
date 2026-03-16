@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import { BasePage } from './BasePage';
+import { BasePage } from '../BasePage';
 import { AdminNewAccountOpeningRequestPage } from './AdminNewAccontOpeningRequestPage';
 import { AdminAccountHolderDetailsPage } from './AdminAccountHolderDetailspage';
 import { AdminAddNewCashierPage } from './AdminAddNewCashierPage';

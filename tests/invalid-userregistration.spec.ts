@@ -5,12 +5,20 @@ import { UserRegistrationPage } from '../pages/UserRegistrationPage';
 import { TestConfig } from '../test.config';
 import * as fs from 'fs';
 import { UserRole } from '../pages/Enum';
+import path from 'path';
 
 //reading data from json file
-const jsonPath = "test-data/invaliduserregistration.json";
-const registrationData: any = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+const jsonPath = path.resolve(__dirname,"../test-data/invaliduserregistration.json");
+const registrationData: any = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
 test.describe("User Registration with invalid values", () => {
+
+    test.beforeEach(async ({ page }) => {
+        const config = new TestConfig();
+        await page.goto(config.baseURL);
+        await expect(page).toHaveTitle(config.homePageTitle);
+    });
+
     for (const data of registrationData) {
         test(data.scenario, async ({ page }) => {
             const homePage = new HomePage(page);
@@ -18,8 +26,6 @@ test.describe("User Registration with invalid values", () => {
             const userRegistrationPage = new UserRegistrationPage(page);
             const config = new TestConfig();
 
-            await page.goto(config.baseURL);
-            await expect(page).toHaveTitle(config.homePageTitle);
             await homePage.navigateByUserRole(page, UserRole.USER);
             await expect(page).toHaveTitle(config.userLoginPageTitle);
             await userLoginPage.clickCreateAccountLink();

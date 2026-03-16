@@ -99,6 +99,16 @@ export class TestConfig {
   cashierLoginPageURL = "http://localhost/bankms/cashier/login.php";
   cashierLoginPageTitle = "e-Banking | Cashier";
 
+   cashierDeleteAlertMsg = "Do you really want to Delete ?";
+  cashierDataDeletedAlertMsg = "Data deleted";
+  cashierDetailsPageTitle = "e-Banking | Admin";
+  cashierDetailsUpdateMsg = "Cashier detail has been updated.";
+  updateCashierDetailsPageTitle = "e-Banking | Admin Edit cashier Details";
+
+  //update cashier details
+  cashierUpadetLastName = "C";
+  cashierUpdateAddress = "Gudiwada";
+
   //Cashier
   cashierEmail = "cashier125";
   cashierPassword = "cashier125";
@@ -126,8 +136,7 @@ export class TestConfig {
   cashierAddress = "4-931 , flat number 402 , Baba Nivas,Manikonda";
   cashierProfilePageTitle = "e-Banking | Cashier Profile";
   cashierProfileUpdateSuccessMsg = "Cashier detail has been updated.";
-
-
+ 
 
 
 }

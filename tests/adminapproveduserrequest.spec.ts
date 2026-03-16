@@ -1,9 +1,9 @@
 import { test, expect, Page } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
-import { AdminLoginPage } from '../pages/AdminLoginPage';
-import { AdminDashboardPage } from '../pages/AdminDashboardPage';
-import { AdminNewAccountOpeningRequestPage } from '../pages/AdminNewAccontOpeningRequestPage';
-import { AdminAccountHolderDetailsPage } from '../pages/AdminAccountHolderDetailspage';
+import { AdminLoginPage } from '../pages/admin/AdminLoginPage';
+import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage';
+import { AdminNewAccountOpeningRequestPage } from '../pages/admin/AdminNewAccontOpeningRequestPage';
+import { AdminAccountHolderDetailsPage } from '../pages/admin/AdminAccountHolderDetailspage';
 import { TestConfig } from '../test.config';
 import { UserRole } from '../pages/Enum';
 import { CommonUtils } from '../utils/CommonUtils';

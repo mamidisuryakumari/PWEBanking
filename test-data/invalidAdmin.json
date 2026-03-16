@@ -1,0 +1,30 @@
+[
+    {
+      "scenario": "Invalid email",
+      "email": "admingmail.com",
+      "password": "admin@123",
+      "field": "username",
+      "expectedMessage": "Please include an '@' in the email address. 'admingmail.com' is missing an '@'."
+    },
+    {
+      "scenario": "Invalid password",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "field": "password",
+      "expectedMessage": "Please fill out this field."
+    },
+    {
+      "scenario": "Both invalid",
+      "email": "admin@gmail",
+      "password": "admin",
+      "field": "username",
+      "expectedMessage": "Please fill out this field."
+    },
+    {
+      "scenario": "Empty values",
+      "email": "",
+      "password": "",
+       "field": "username",
+      "expectedMessage": "Please fill out this field."
+    }
+]

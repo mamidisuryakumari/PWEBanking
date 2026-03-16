@@ -1,6 +1,6 @@
 
 import { AdminNewAccountOpeningRequestPage } from "./AdminNewAccontOpeningRequestPage";
-import { BasePage } from "./BasePage";
+import { BasePage } from "../BasePage";
 import { Page } from '@playwright/test';
 
 export class AdminAccountHolderDetailsPage extends BasePage {
