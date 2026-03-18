@@ -1,0 +1,30 @@
+[
+    {
+      "scenario": "empty employeeid",
+      "employeeId": "",
+      "password": "cashier125",
+      "field": "employeeId",
+      "expectedMessage": "Please fill out this field."
+    },
+    {
+      "scenario": "empty password",
+      "employeeId": "cashier",
+      "password": "",
+      "field": "password",
+      "expectedMessage": "Please fill out this field."
+    },
+    {
+      "scenario": "Both invalid",
+      "employeeId": "cashier",
+      "password": "12",
+      "field": "employeeId",
+      "expectedMessage": "Please fill out this field."
+    },
+    {
+      "scenario": "Empty values",
+      "employeeId": "",
+      "password": "",
+       "field": "employeeId",
+      "expectedMessage": "Please fill out this field."
+    }
+  ]

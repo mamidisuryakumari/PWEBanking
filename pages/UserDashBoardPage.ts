@@ -79,9 +79,5 @@ export class UserDashBoardPage extends BasePage {
     await this.logoutLink1.click();
   }
 
-  async navigateToCashierProfilePage() {
-    await this.cashierMenu.click();
-    await this.cashierProfileMenu.click();
-    return new CashierProfilePage(this.page);
-  }
+
 }
