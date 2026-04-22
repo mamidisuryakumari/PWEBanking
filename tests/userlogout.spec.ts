@@ -15,12 +15,15 @@ test("User logout validation", async ({ page }) => {
   const userLoginpage = new UserLoginPage(page);
   const userDashBoardPage = new UserDashBoardPage(page);
   const config = new TestConfig();
+  
   //userlogin
   await page.goto(config.baseURL);
-  await homePage.navigateByUserRole(page, UserRole.USER);
-  await userLoginpage.userLogin(config.username,
-    config.password);
-  await expect(page).toHaveTitle(config.userDashBoardPageTitle);
+    await homePage.expectHomePageTitle(config.homePageTitle);
+    await homePage.navigateByUserRole(page,UserRole.USER);
+    await userLoginpage.expectLoginPageTitle(config.userLoginPageTitle);
+    await userLoginpage.userLogin(config.username,
+      config.password);
+      await userDashBoardPage.expectUserDashBoardPageTitle(config.userDashBoardPageTitle);
   
   //user logout
   await userDashBoardPage.userLogout();
@@ -28,6 +31,6 @@ test("User logout validation", async ({ page }) => {
   expect(modalText).toContain(config.userLogoutMsg);
 
   await userDashBoardPage.clickModalLogoutLink();
-  await expect(page).toHaveTitle(config.userLoginPageTitle);
+  await userLoginpage.expectLoginPageTitle(config.userLoginPageTitle);
 
 });

@@ -11,6 +11,7 @@ export class TestConfig {
   userEmailId = "surya1245@gmail.com";
   userMobileNumber = "9876543210";
   userPassword = "surya@123";
+  userNewUserAlertText = "Alert ! New User, Account not opend yet";
 
   //user account opening details
   selectAadhaarCard = "Adhar Card";

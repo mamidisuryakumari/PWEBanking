@@ -1,3 +1,4 @@
+import { en } from "@faker-js/faker/.";
 import { BasePage} from "./BasePage";
 import { Page,Locator} from '@playwright/test';
 
@@ -13,10 +14,25 @@ constructor(page:Page){
     this.mobileNumber = page.locator("#mobno");
 }
 
-async userProfileUpdate(firstName:string, lastName:string, mobileNumber:string){
+async enterUserFirstName(firstName:string){
+    await this.userFirstName.waitFor({state:'visible', timeout:10_000});
     await this.userFirstName.fill(firstName);
+}
+
+async enterUserLastName(lastName:string){
+    await this.userLastName.waitFor({state:'visible', timeout:10_000});
     await this.userLastName.fill(lastName);
+}
+
+async enterUserMobileNumber(mobileNumber:string){
+    await this.mobileNumber.waitFor({state:'visible', timeout:10_000});
     await this.mobileNumber.fill(mobileNumber);
 }
 
+async userProfileUpdate(firstName:string, lastName:string, mobileNumber:string){
+    await this.enterUserFirstName(firstName);
+     await this.enterUserLastName(lastName);
+     await this.enterUserMobileNumber(mobileNumber);
+
+}
 }

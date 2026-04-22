@@ -15,15 +15,34 @@ export class UserAddPayeePage extends BasePage {
         this.accountNumberTextFld = page.locator("#accountnumber");
         this.confirmAccountNumberTextFld = page.locator("#conaccountnumber");
         this.payeeNameTextFld = page.locator("#acountholdername");
-        this.submitBtn = page.getByText("Submit");
+        this.submitBtn = page.locator('button').filter({ hasText: 'Submit' });
+    }
+
+    async enterAccountNumber(accountNumber: string) {
+        await this.accountNumberTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.accountNumberTextFld.fill(accountNumber);
+    }
+
+    async enterConfirmAccountNumber(accountNumber: string) {
+        await this.confirmAccountNumberTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.confirmAccountNumberTextFld.fill(accountNumber);
+    }
+
+    async enterPayeeName(payeeName: string) {
+        await this.payeeNameTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.payeeNameTextFld.fill(payeeName);
+    }
+
+    async clickOnSubmit() {
+        await this.submitBtn.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.submitBtn.click();
     }
 
     async addPayee(accountNumber: string, payeeName: string) {
-
-        await this.accountNumberTextFld.fill(accountNumber);
-        await this.confirmAccountNumberTextFld.fill(accountNumber);
-        await this.payeeNameTextFld.fill(payeeName);
-        await this.submitBtn.click();
+        await this.enterAccountNumber(accountNumber);
+        await this.enterConfirmAccountNumber(accountNumber);
+        await this.enterPayeeName(payeeName);
+        await this.clickOnSubmit();
     }
 
     async isPayeeExists(accountNumber: string) {

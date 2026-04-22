@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 import { UserLoginPage } from './UserLoginPage';
 
@@ -14,11 +14,14 @@ export class HomePage extends BasePage {
 
     constructor(page: Page) {
         super(page);
-        this.userAccountHolderLink = page.getByRole("link", { name: 'User/Account Holder' }).nth(1);
-        this.cashierLink = page.getByRole("link", { name: 'Cashier' }).nth(1);
-        this.adminLink = page.getByRole("link", { name: 'Admin' }).nth(1);
+        this.userAccountHolderLink = page.locator('a').filter({ hasText: 'User/Account Holder' }).last();
+        this.cashierLink = page.locator('a').filter({ hasText: 'Cashier' }).last();
+        this.adminLink = page.locator('a').filter({ hasText: 'Admin' }).last(); 
     }
 
+    async expectHomePageTitle(expectedTitle: string) {
+        await expect(this.page).toHaveTitle(expectedTitle);
+    }
 
     async navigateByUserRole(page: Page, role: UserRole) {
         
@@ -45,6 +48,8 @@ export class HomePage extends BasePage {
         this.userAccountHolderLink.click();
         return new UserLoginPage(this.page);
     }
+
+
 
 
 }

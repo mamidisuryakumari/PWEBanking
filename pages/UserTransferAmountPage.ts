@@ -7,14 +7,24 @@ export class UserTransferAmountPage extends BasePage {
 
    constructor(page:Page){
     super(page);
-    this.amountTextFld = page.getByPlaceholder("Amount");
-    this.submitBtn = page.getByRole('button',{name: 'Submit'});
+    this.amountTextFld = page.locator("input[name='amount']");
+    this.submitBtn = page.locator('button').filter({ hasText: 'Submit' });
+}
+
+async enterAmount(amount:string){
+    await this.amountTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+    await this.amountTextFld.fill(amount);
+}
+
+async clickOnSubmit(){  
+    await this.submitBtn.waitFor({ state: 'visible', timeout: 10_000 });
+    await this.submitBtn.click();
 }
 
 async transferAmountToPayee(amount:string){
-await this.amountTextFld.fill(amount);
-await this.submitBtn.click();
-return this;
+    await this.enterAmount(amount);
+    await this.clickOnSubmit();
+    return this;
 }
 
 }

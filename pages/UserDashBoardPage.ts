@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 import { UserAddPayeePage } from './UserAddPayeePage';
 import { UserManagePayeePage } from './UserManagePayeePage';
@@ -24,26 +24,47 @@ export class UserDashBoardPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.newUserText = page.locator("div[class='alert alert-danger']");
-    this.accountOpeningMenu = page.getByText("Account Openning");
-    this.addPayeeMenu = page.getByText("Payee / Beneficiary");
-    this.addPayeeLink = page.getByRole('link', { name: 'Add' });
-    this.userProfileMenu = page.getByText("Automation User");
-    this.userProfileLink = page.getByRole('link', { name: "Profile" });
-    this.logoutLink = page.getByRole('link', { name: 'Logout' }).first();
-    this.logoutLink1 = page.getByRole('link', { name: 'Logout' }).last();
-    this.changePasswordLink = page.getByRole('link', { name: 'Change Password' })
-    this.managePayeeMenu = page.getByRole('link', { name: 'Manage' });
+    this.accountOpeningMenu = page.locator('span').filter({ hasText: 'Account Openning' });
+    this.addPayeeMenu = page.locator('span').filter({ hasText: 'Payee / Beneficiary' });
+    this.addPayeeLink = page.locator('a').filter({ hasText: 'Add' });
+    this.userProfileMenu = page.locator('span').filter({ hasText: 'Automation User' });
+    this.userProfileLink = page.locator('a').filter({ hasText: 'Profile' });
+    this.logoutLink = page.locator('a').filter({ hasText: 'Logout' }).first();
+    this.logoutLink1 = page.locator('a').filter({ hasText: 'Logout' }).last();
+    this.changePasswordLink = page.locator('a').filter({ hasText: 'Change Password' });
+    this.managePayeeMenu = page.locator('a').filter({ hasText: 'Manage' });
     this.modalTextMsg = page.getByText('Select "Logout" below if you are ready to end your current session.');
    
   }
 
-  async navigateToUserProfilePage() {
+  async expectUserDashBoardPageTitle(expectedTitle: string) {
+    await this.page.waitForLoadState('domcontentloaded');
+    await expect(this.page).toHaveTitle(expectedTitle);
+  }
+
+  async clickOnUserProfileMenu() {
+    await this.userProfileMenu.waitFor({ state: 'visible', timeout: 10_000 });
     await this.userProfileMenu.click();
+  }
+  
+  async clickOnUserProfileLink() {
+    await this.userProfileLink.waitFor({ state: 'visible', timeout: 10_000 });
     await this.userProfileLink.click();
+  }
+
+  async navigateToUserProfilePage() {
+    await this.clickOnUserProfileMenu();
+    await this.clickOnUserProfileLink();
     return new UserProfilePage(this.page);
   }
 
+  async expectNewUserText(expectedText: string) {
+    await this.newUserText.waitFor({ state: 'visible', timeout: 10_000 });
+    await expect(this.newUserText).toContainText(expectedText);
+  }
+
   async getNewUserAccountText() {
+    await this.newUserText.waitFor({ state: 'visible', timeout: 10_000 });
     return this.newUserText.innerText();
   }
 
@@ -69,9 +90,14 @@ export class UserDashBoardPage extends BasePage {
     return message;
   }
 
-  async userLogout() {
-    await this.userProfileMenu.click();
+  async clickOnUserLogoutLink() {
+    await this.logoutLink.waitFor({ state: 'visible', timeout: 10_000 });
     await this.logoutLink.click();
+  }
+
+  async userLogout() {
+    await this.clickOnUserProfileMenu();
+    await this.clickOnUserLogoutLink();
     return this;
   }
 

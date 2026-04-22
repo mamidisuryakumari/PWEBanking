@@ -1,6 +1,7 @@
 import { Page, Locator } from "@playwright/test";
 import { BasePage } from "../BasePage";
 import { AdminDashboardPage } from "./AdminDashboardPage";
+import { en } from "@faker-js/faker/.";
 
 export class AdminLoginPage extends BasePage {
 
@@ -10,16 +11,30 @@ export class AdminLoginPage extends BasePage {
 
     constructor(page: Page) {
         super(page);
-        this.adminEmail = page.getByRole("textbox", {name:'email'});
-        this.adminPassword = page.getByRole("textbox",{name:'password'});
-        this.loginBtn = page.getByRole("button",{name:'Login'});
+        this.adminEmail = page.locator("#email");
+        this.adminPassword = page.locator("#password");
+        this.loginBtn = page.locator('button').filter({hasText:'Login'});
+      //  this.loginBtn = page.getByRole("button",{name:'Login'});
+    }
+
+
+    async enterAdminEmail(adminEmail:string){
+        await this.adminEmail.fill(adminEmail);
+    }
+
+    async enterAdminPassword(adminPassword:string){ 
+        await this.adminPassword.fill(adminPassword);
+    }
+
+    async clickLoginBtn(){
+        await this.loginBtn.click();
     }
 
     async adminLogin(adminEmail:string,adminPassword:string){
-        await this.adminEmail.fill(adminEmail);
-        await this.adminPassword.fill(adminPassword);
-        await this.loginBtn.click();
+        await this.enterAdminEmail(adminEmail);
+        await this.enterAdminPassword(adminPassword);
+        await this.clickLoginBtn();
         return new AdminDashboardPage(this.page);
     }
-
+       
 }

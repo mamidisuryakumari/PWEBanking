@@ -21,11 +21,11 @@ test("User Account Opening", async ({ page }) => {
     const testContext = new TestContext();
 
     await page.goto(config.baseURL);
-    await expect(page).toHaveTitle(config.homePageTitle);
+    await homePage.expectHomePageTitle(config.homePageTitle);
     await homePage.navigateByUserRole(page, UserRole.USER);
-    await expect(page).toHaveTitle(config.userLoginPageTitle);
+    await userLoginPage.expectLoginPageTitle(config.userLoginPageTitle);
     await userLoginPage.clickCreateAccountLink();
-    await expect(page).toHaveTitle("e-Banking");
+    await userRegistrationPage.expectRegistrationPageTitle(config.userRegistrationPageTitle);
 
     const email = config.userEmailId;
     const random = CommonUtils.generateRandomNumber();
@@ -45,17 +45,18 @@ test("User Account Opening", async ({ page }) => {
     testContext.email = userEmail;
     testContext.password = userPassword;
 
-    await expect(page).toHaveTitle(config.userLoginPageTitle);
+    await userLoginPage.expectLoginPageTitle(config.userLoginPageTitle);
 
     //user login
     userLoginPage.userLogin(testContext.email, testContext.password);
-    await expect(userDashBoardPage.newUserText).toHaveText(config.expectedNewUserText);
+    await userDashBoardPage.expectNewUserText(config.expectedNewUserText);
     await userAccountPage.clickOnAccountOpeningMenu();
-    await expect(page).toHaveTitle(config.userAccountOpenPageTitle);
+    await userAccountPage.expectAccountOpenPageTitle(config.userAccountOpenPageTitle);
     await CommonUtils.acceptAlert(page);
 
     //user account open
     await userAccountPage.userAccountOpen(
+        config.selectAadhaarCard,
         config.userAddressProofIdNumber,
         config.userAadhaarCardPath,
         config.userPanCardPath,
@@ -64,7 +65,8 @@ test("User Account Opening", async ({ page }) => {
         config.userDOB
     );
 
+    await userAccountPage.expectAccountDetailsText(config.userAccountDetailsText);
 
-    await expect(userAccountPage.accountDetailsLabel).toHaveText(config.userAccountDetailsText);
+    
 
 });

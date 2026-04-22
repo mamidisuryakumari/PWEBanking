@@ -10,13 +10,25 @@ export class CashhierLoginPage extends BasePage {
         super(page);
         this.cashierEmailFld = page.locator("#empid");
         this.cashierPasswordFld = page.locator("#password");
-        this.loginBtn = page.getByRole("button", { name: 'Login' });
+        this.loginBtn = page.locator('button').filter({hasText:'Login'});
+    }
+
+    async enterCashierEmail(cashierEmail:string){   
+        await this.cashierEmailFld.fill(cashierEmail);
+    }
+
+    async enterCashierPassword(cashierPassword:string){
+        await this.cashierPasswordFld.fill(cashierPassword);
+    }
+
+    async clickLoginBtn(){
+        await this.loginBtn.click();
     }
 
     async cashierLogin(cashierEmail:string,cashierPassword:string){
-       await this.cashierEmailFld.fill(cashierEmail);
-       await this.cashierPasswordFld.fill(cashierPassword);
-       await this.loginBtn.click();  
+       await this.enterCashierEmail(cashierEmail);
+       await this.enterCashierPassword(cashierPassword);
+       await this.clickLoginBtn(); 
     }
 
 }

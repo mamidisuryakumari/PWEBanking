@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
+    "@playwright/test": "^1.59.1",
     "@types/node": "^24.10.13",
     "allure-commandline": "^2.13.9",
     "allure-playwright": "^2.15.1"

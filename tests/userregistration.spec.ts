@@ -21,13 +21,13 @@ test("User Registration", async ({ page }) => {
   const testContext = new TestContext();
 
   await page.goto(config.baseURL);
-  await expect(page).toHaveTitle(config.homePageTitle);
+  await homePage.expectHomePageTitle(config.homePageTitle);
 
   await homePage.navigateByUserRole(page, UserRole.USER);
-  await expect(page).toHaveTitle(config.userLoginPageTitle);
+  await userLoginPage.expectLoginPageTitle(config.userLoginPageTitle);
 
   await userLoginPage.clickCreateAccountLink();
-  await expect(page).toHaveTitle("e-Banking");
+  await userRegistrationPage.expectRegistrationPageTitle(config.userRegistrationPageTitle);
 
   const email = config.userEmailId;
   const random = CommonUtils.generateRandomNumber();
@@ -51,13 +51,14 @@ test("User Registration", async ({ page }) => {
 
 
   await CommonUtils.acceptAlert(page);
-
   await expect(page).toHaveTitle(config.userLoginPageTitle);
+
 
   userLoginPage.userLogin(testContext.email, testContext.password);
 
+  await userDashBoardPage.expectNewUserText(config.userNewUserAlertText);
 
-  await expect(userDashBoardPage.newUserText).toHaveText('Alert ! New User, Account not opend yet');
+ 
 
 
 });
