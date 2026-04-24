@@ -1,6 +1,6 @@
 import { th } from "@faker-js/faker/.";
 import { BasePage } from "../BasePage";
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 import { CashierDetailsPage } from "./CashierDetailsPage";
 
 export class AdminAddNewCashierPage extends BasePage {
@@ -28,31 +28,96 @@ export class AdminAddNewCashierPage extends BasePage {
         this.cashierEmployeeIdTextFld = page.locator("input[name='empid']");
         this.cashierAddressTextFld = page.locator('[name="address"]');
         this.cashierPasswordTextFld = page.locator('input[name="password"]');
-        this.cashierAddBtnFld = page.getByRole("button", { name: 'Add' });
+        this.cashierAddBtnFld = page.locator('button').filter({ hasText: 'Add' });
 
-        this.cashierMenu = page.getByText("Cashier", { exact: true });
-        this.manageCashierLink = page.getByRole("link", { name: 'Manage Cashier' });
+        this.cashierMenu = page.locator('span').filter({ hasText: "Cashier" });
+        this.manageCashierLink = page.locator('a').filter({ hasText: 'Manage Cashier' });
+    }
+
+    async expectAdminAddNewCashierPageTitle(expectedTitle: string) {
+        await this.page.waitForLoadState('domcontentloaded');
+        await expect(this.page).toHaveTitle(expectedTitle);
+    }
+
+    async enterCashierFirstName(cashierFirstName: string) {
+        await this.cashierFirstNameTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierFirstNameTextFld.fill(cashierFirstName);
+    }
+
+    async enterCashierLastName(cashierLastName: string) {
+        await this.cashierLastNameTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierLastNameTextFld.fill(cashierLastName);
+    }
+
+    async enterCashierMobileNumber(cashierMobileNumber: string) {
+        await this.cashierMobileNumberTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierMobileNumberTextFld.fill(cashierMobileNumber);
+    }
+
+    async enterCashierEmailId(cashierEmailId: string) {
+        await this.cashierEmailTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierEmailTextFld.fill(cashierEmailId);
+    }
+
+    async selectCashierGender(cashierGender: string) {
+        await this.cashierGenderDropdown.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierGenderDropdown.selectOption(cashierGender);
+    }
+
+    async enterCashierDob(cashierDob: string) {
+        await this.cashierDobFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierDobFld.fill(cashierDob);
+    }
+
+    async enterCashierEmployeeId(cashierEmployeeId: string) {
+        await this.cashierEmployeeIdTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierEmployeeIdTextFld.fill(cashierEmployeeId);
+    }
+
+    async enterCashierAddress(cashierAddress: string) {
+        await this.cashierAddressTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierAddressTextFld.fill(cashierAddress);
+    }
+
+    async enterCashierPassword(cashierPassword: string) {
+        await this.cashierPasswordTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierPasswordTextFld.fill(cashierPassword);
+    }
+
+    async clickOnCashierAddBtn() {
+        await this.cashierAddBtnFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierAddBtnFld.click();
+    }
+
+    async clickOnCashierMenu() {
+        await this.cashierMenu.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierMenu.click();
+    }
+
+    async clickOnManageCashierLink() {
+        await this.manageCashierLink.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.manageCashierLink.click();
     }
 
     async addCashier(cashierFirstName: string, cashierLastName: string,
         cashierMobileNumber: string, cashierEmailId: string, cashierGender: string,
         cashierDob: string, cashierEmployeeId: string, cashierAddress: string, cashierPassword: string) {
-        await this.cashierFirstNameTextFld.fill(cashierFirstName);
-        await this.cashierLastNameTextFld.fill(cashierLastName);
-        await this.cashierMobileNumberTextFld.fill(cashierMobileNumber);
-        await this.cashierEmailTextFld.fill(cashierEmailId);
-        await this.cashierGenderDropdown.selectOption(cashierGender);
-        await this.cashierDobFld.fill(cashierDob);
-        await this.cashierEmployeeIdTextFld.fill(cashierEmployeeId);
-        await this.cashierAddressTextFld.fill(cashierAddress);
-        await this.cashierPasswordTextFld.fill(cashierPassword);
-        await this.cashierAddBtnFld.click();
+        await this.enterCashierFirstName(cashierFirstName);
+        await this.enterCashierLastName(cashierLastName);
+        await this.enterCashierMobileNumber(cashierMobileNumber);
+        await this.enterCashierEmailId(cashierEmailId);
+        await this.selectCashierGender(cashierGender);
+        await this.enterCashierDob(cashierDob);
+        await this.enterCashierEmployeeId(cashierEmployeeId);
+        await this.enterCashierAddress(cashierAddress);
+        await this.enterCashierPassword(cashierPassword);
+        await this.clickOnCashierAddBtn();
         return this;
     }
 
     async navigateToCashierDetailsPage() {
-        await this.cashierMenu.click();
-        await this.manageCashierLink.click();
+        await this.clickOnCashierMenu();
+        await this.clickOnManageCashierLink();
         return new CashierDetailsPage(this.page);
     }
 }

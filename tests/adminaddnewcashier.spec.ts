@@ -9,9 +9,10 @@ import { CommonUtils } from '../utils/CommonUtils';
 import { TestContext } from '../pages/TestContext';
 import { CashhierLoginPage } from '../pages/CashierLoginPage';
 import { CashierDetailsPage } from '../pages/admin/CashierDetailsPage';
+import { CashierDashBoardPage } from '../pages/CashierDashBoardPage';
 
 
-test('Admin add new cashier', async ({ page }) => {
+test('Admin add new cashier @admin', async ({ page }) => {
         const homePage = new HomePage(page);
         const adminLoginPage = new AdminLoginPage(page);
         const config = new TestConfig();
@@ -19,19 +20,20 @@ test('Admin add new cashier', async ({ page }) => {
         const adminAddNewCashierPage = new AdminAddNewCashierPage(page);
         const testContext = new TestContext();
         const cashierLoginPage = new CashhierLoginPage(page);
+        const cashierDashBoardPage = new CashierDashBoardPage(page);
 
 
         await page.goto(config.baseURL);
-        await expect(page).toHaveTitle(config.homePageTitle);
+        await homePage.expectHomePageTitle(config.homePageTitle);
 
         await homePage.navigateByUserRole(page, UserRole.ADMIN);
-        await expect(page).toHaveTitle(config.adminLoginPageTitle);
+        await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
 
         //admin login
         await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
-        await expect(page).toHaveTitle(config.adminDashboardPageTitle);
+        await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
         await adminDashboardPage.navigateToAddCashierPage();
-        await expect(page).toHaveTitle(config.adminAddCashierPageTitle);
+        await adminAddNewCashierPage.expectAdminAddNewCashierPageTitle(config.adminAddCashierPageTitle);
 
         const email = config.cashierEmailId;
         const random = CommonUtils.generateRandomNumber();
@@ -51,14 +53,14 @@ test('Admin add new cashier', async ({ page }) => {
         testContext.cashierPassword = `${config.cashierPassword}${random}`;
         await page.waitForLoadState('load');
         await page.goto(config.cashierLoginPageURL);
-        await expect(page).toHaveTitle(config.cashierLoginPageTitle);
+        await cashierLoginPage.expectLoginPageTitle(config.cashierLoginPageTitle);
         await cashierLoginPage.cashierLogin(testContext.cashierEmployeeId, testContext.cashierPassword);
-        await expect(page).toHaveTitle(config.cashierDashBoardPageTitle);
+        await cashierDashBoardPage.expectCashierDashBoardPageTitle(config.cashierDashBoardPageTitle);
 
 
 })
 
-test('Admin delete cashier', async ({ page }) => {
+test('Admin delete cashier @admin', async ({ page }) => {
 
         const homePage = new HomePage(page);
         const adminLoginPage = new AdminLoginPage(page);
@@ -70,16 +72,16 @@ test('Admin delete cashier', async ({ page }) => {
 
 
         await page.goto(config.baseURL);
-        await expect(page).toHaveTitle(config.homePageTitle);
+        await homePage.expectHomePageTitle(config.homePageTitle);
 
         await homePage.navigateByUserRole(page, UserRole.ADMIN);
-        await expect(page).toHaveTitle(config.adminLoginPageTitle);
+        await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
 
         //admin login
         await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
-        await expect(page).toHaveTitle(config.adminDashboardPageTitle);
+        await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
         await adminDashboardPage.navigateToAddCashierPage();
-        await expect(page).toHaveTitle(config.adminAddCashierPageTitle);
+        await adminAddNewCashierPage.expectAdminAddNewCashierPageTitle(config.adminAddCashierPageTitle);
 
         const email = config.cashierEmailId;
         const random = CommonUtils.generateRandomNumber();
@@ -96,7 +98,7 @@ test('Admin delete cashier', async ({ page }) => {
         testContext.cashierEmployeeId = `${config.cashierEmployeeId}${random}`;
 
         await adminAddNewCashierPage.navigateToCashierDetailsPage();
-        await expect(page).toHaveTitle(config.cashierDetailsPageTitle);
+        await cashierDetailsPage.expectCashierDetailsPageTitle(config.cashierDetailsPageTitle);
 
         page.once('dialog', async (dialog) => {
                 const message = dialog.message();

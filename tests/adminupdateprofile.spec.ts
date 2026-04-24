@@ -6,21 +6,22 @@ import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage';
 import { TestConfig } from '../test.config';
 import { UserRole } from '../pages/Enum';
 
-test("Admin profile update", async ({ page }) => {
+test("Admin profile update @admin", async ({ page }) => {
 
     const homePage = new HomePage(page);
     const adminLoginPage = new AdminLoginPage(page);
+    const adminDashboardPage = new AdminDashboardPage(page);
     const config = new TestConfig();
 
     await page.goto(config.baseURL);
-    await expect(page).toHaveTitle(config.homePageTitle);
+    await homePage.expectHomePageTitle(config.homePageTitle);
 
     await homePage.navigateByUserRole(page, UserRole.ADMIN);
-    await expect(page).toHaveTitle(config.adminLoginPageTitle);
+    await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
 
     await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
 
-    await expect(page).toHaveTitle(config.adminDashboardPageTitle);
+    await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
 
     
 });

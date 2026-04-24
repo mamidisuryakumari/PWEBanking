@@ -9,7 +9,7 @@ import { TestContext } from '../pages/TestContext';
 
 
 
-test("User logout validation", async ({ page }) => {
+test("User logout validation @user", async ({ page }) => {
   const testContext = new TestContext();
   const homePage = new HomePage(page);
   const userLoginpage = new UserLoginPage(page);
@@ -27,8 +27,8 @@ test("User logout validation", async ({ page }) => {
   
   //user logout
   await userDashBoardPage.userLogout();
-  const modalText = await userDashBoardPage.getModalText();
-  expect(modalText).toContain(config.userLogoutMsg);
+  await userDashBoardPage.expectLogoutModalText(config.userLogoutMsg);
+  
 
   await userDashBoardPage.clickModalLogoutLink();
   await userLoginpage.expectLoginPageTitle(config.userLoginPageTitle);

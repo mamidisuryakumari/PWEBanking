@@ -12,7 +12,7 @@ import { CashierDetailsPage } from '../pages/admin/CashierDetailsPage';
 import { UpdateCashierDetailsPage } from '../pages/admin/UpdateCashierDetailsPage';
 
 
-test("Admin Edit cashier details", async ({ page }) => {
+test("Admin Edit cashier details @admin", async ({ page }) => {
 
     const homePage = new HomePage(page);
     const adminLoginPage = new AdminLoginPage(page);
@@ -25,16 +25,16 @@ test("Admin Edit cashier details", async ({ page }) => {
     const updateCashierDetailsPage = new UpdateCashierDetailsPage(page);
 
     await page.goto(config.baseURL);
-    await expect(page).toHaveTitle(config.homePageTitle);
+    await homePage.expectHomePageTitle(config.homePageTitle);
 
     await homePage.navigateByUserRole(page, UserRole.ADMIN);
-    await expect(page).toHaveTitle(config.adminLoginPageTitle);
+    await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
 
     //admin login
     await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
-    await expect(page).toHaveTitle(config.adminDashboardPageTitle);
+    await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
     await adminDashboardPage.navigateToAddCashierPage();
-    await expect(page).toHaveTitle(config.adminAddCashierPageTitle);
+    await adminAddNewCashierPage.expectAdminAddNewCashierPageTitle(config.adminAddCashierPageTitle);
 
     const email = config.cashierEmailId;
     const random = CommonUtils.generateRandomNumber();
@@ -51,10 +51,10 @@ test("Admin Edit cashier details", async ({ page }) => {
     testContext.cashierEmployeeId = `${config.cashierEmployeeId}${random}`;
 
     await adminAddNewCashierPage.navigateToCashierDetailsPage();
-    await expect(page).toHaveTitle(config.cashierDetailsPageTitle);
+    await cashierDetailsPage.expectCashierDetailsPageTitle(config.cashierDetailsPageTitle);
 
     await cashierDetailsPage.navigateToupdateCashierDetailsPage();
-    await expect(page).toHaveTitle(config.updateCashierDetailsPageTitle)
+    await updateCashierDetailsPage.expectUpdateCashierDetailsPageTitle(config.updateCashierDetailsPageTitle);
 
     page.on('dialog', async (dialog) => {
         const message = dialog.message();

@@ -10,7 +10,7 @@ import { TestConfig } from '../test.config';
 import { UserRole } from '../pages/Enum';
 
 
-test("User Account Opening", async ({ page }) => {
+test("User Account Opening @user", async ({ page }) => {
 
     const homePage = new HomePage(page);
     const userLoginPage = new UserLoginPage(page);
@@ -52,7 +52,8 @@ test("User Account Opening", async ({ page }) => {
     await userDashBoardPage.expectNewUserText(config.expectedNewUserText);
     await userAccountPage.clickOnAccountOpeningMenu();
     await userAccountPage.expectAccountOpenPageTitle(config.userAccountOpenPageTitle);
-    await CommonUtils.acceptAlert(page);
+   // await CommonUtils.acceptAlert(page);
+   await userAccountPage.userAccountOpenAcceptAlert();
 
     //user account open
     await userAccountPage.userAccountOpen(

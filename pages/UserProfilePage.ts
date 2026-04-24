@@ -1,6 +1,7 @@
 import { en } from "@faker-js/faker/.";
 import { BasePage} from "./BasePage";
-import { Page,Locator} from '@playwright/test';
+import { Page,Locator,expect} from '@playwright/test';
+import { config } from "process";
 
 export class UserProfilePage extends BasePage{
 readonly userFirstName:Locator;
@@ -27,6 +28,15 @@ async enterUserLastName(lastName:string){
 async enterUserMobileNumber(mobileNumber:string){
     await this.mobileNumber.waitFor({state:'visible', timeout:10_000});
     await this.mobileNumber.fill(mobileNumber);
+}
+
+async acceptUserProfileUpdateAlert(userProfileUpdateAlertMsg:string){
+    await this.page.on('dialog', async (dialog) => {
+        const message = dialog.message();
+        expect(message).toContain(userProfileUpdateAlertMsg);
+        await dialog.accept();
+    })
+   
 }
 
 async userProfileUpdate(firstName:string, lastName:string, mobileNumber:string){

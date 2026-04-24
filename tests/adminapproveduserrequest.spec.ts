@@ -14,7 +14,7 @@ import { UserAccountPage } from '../pages/UserAccountPage';
 import { TestContext } from '../pages/TestContext';
 
 
-test("Admin Approve user Request", async ({ page }) => {
+test("Admin Approve user Request @admin", async ({ page }) => {
 
   const homePage = new HomePage(page);
   const adminLoginPage = new AdminLoginPage(page);
@@ -65,6 +65,7 @@ test("Admin Approve user Request", async ({ page }) => {
 
   //user account open
   await userAccountPage.userAccountOpen(
+    config.selectAadhaarCard,
     config.userAddressProofIdNumber,
     config.userAadhaarCardPath,
     config.userPanCardPath,
@@ -78,17 +79,17 @@ test("Admin Approve user Request", async ({ page }) => {
 
   //navigate to admin login page
   await page.goto(config.adminLoginPageURL);
-  await expect(page).toHaveTitle(config.adminLoginPageTitle);
+  await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
   await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
-  await expect(page).toHaveTitle(config.adminDashboardPageTitle);
+  await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
   await adminDashboardPage.navigateToNewAccountOpeningRequestsPage();
-  await expect(page).toHaveTitle(config.adminNewAccountOpeningRequestPageTitle);
+  await adminNewAccountOpeningRequestPage.expectAdminNewAccountOpeningRequestPageTitle(config.adminNewAccountOpeningRequestPageTitle);
   await adminNewAccountOpeningRequestPage.searchUserAccount();
-  await expect(page).toHaveTitle(config.adminAccountHolderDetailsPageTitle);
+  await adminAccountHolderDetailsPage.expectAdminAccountHolderDetailsPageTitle(config.adminAccountHolderDetailsPageTitle);
   await CommonUtils.acceptAlert(page);
   await adminAccountHolderDetailsPage.userAccountApproval(config.remark,
     config.initialAmount, config.approvedStatus);
-  await expect(page).toHaveTitle(config.adminNewAccountOpeningRequestPageTitle);
+  await adminNewAccountOpeningRequestPage.expectAdminNewAccountOpeningRequestPageTitle(config.adminNewAccountOpeningRequestPageTitle);
 
 
 });

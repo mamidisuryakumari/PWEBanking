@@ -6,7 +6,7 @@ import { UserRole } from '../pages/Enum';
 import { CashierDashBoardPage } from '../pages/CashierDashBoardPage';
 import { CashierProfilePage } from '../pages/CashierProfilePage';
 
-test('Cashier profile update', async({page}) => {
+test('Cashier profile update @cashier', async({page}) => {
 
     const homePage = new HomePage(page);
       const cashierLoginPage = new CashhierLoginPage(page);

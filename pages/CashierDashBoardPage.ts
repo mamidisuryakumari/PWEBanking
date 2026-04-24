@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page ,expect} from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { CashierAccountHoldersPage } from "./CashierAccountHoldersPage";
 import { CashierTransactionReportPage } from "./CashierTransactionReportPage";
@@ -12,38 +12,77 @@ export class CashierDashBoardPage extends BasePage {
     readonly cashierMenu: Locator;
     readonly cashierProfileMenu: Locator;
     readonly cashierLogoutLink: Locator;
-    readonly modalTextMsg;
-    readonly logoutLink;
+    readonly modalTextMsg: Locator;
+    readonly logoutLink: Locator;
     constructor(page: Page) {
         super(page);
-        this.accountHolderMenu = page.getByText("Account Holders");
-        this.reportMenu = page.locator("a[class='nav-link collapsed']");
-        this.transactionHistoryMenu = page.getByRole('link', { name: "Txn History Report" });
+        this.accountHolderMenu = page.locator('span').filter({ hasText: " Account Holders" });
+        this.reportMenu = page.locator('span').filter({ hasText: "Report" });
+        this.transactionHistoryMenu = page.locator('a').filter({ hasText: "Txn History Report" }); 
         this.cashierMenu = page.locator("img[class='img-profile rounded-circle']");
-        this.cashierProfileMenu = page.getByRole('link', { name: 'Profile' });
+        this.cashierProfileMenu = page.locator('a').filter({ hasText: "Profile" });
         this.cashierLogoutLink = page.locator('a').filter({ hasText: 'Logout' }).first();
-        this.modalTextMsg = page.getByText('Select "Logout" below if you are ready to end your current session.');
-        this.logoutLink = page.getByRole('link', { name: 'Logout' }).last();
+        this.modalTextMsg = page.locator("div[class='modal-body']");
+        this.logoutLink = page.locator('a').filter({ hasText: 'Logout' }).last();
     }
 
-    async navigateToAccountHoldersPage() {
+    async expectCashierDashBoardPageTitle(expectedTitle: string) {
+        await this.page.waitForLoadState('domcontentloaded');
+        await expect(this.page).toHaveTitle(expectedTitle);
+    }
+
+    async clickOnAccountHolderMenu() {
+        await this.accountHolderMenu.waitFor({ state: 'visible', timeout: 10_000 });
         await this.accountHolderMenu.click();
     }
 
-    async navigateToCashierTransactionReportPage() {
+    async clickOnReportMenu() {
+        await this.reportMenu.waitFor({ state: 'visible', timeout: 10_000 });
         await this.reportMenu.click();
+    }
+
+    async clickOnTransactionHistoryMenu() {
+        await this.transactionHistoryMenu.waitFor({ state: 'visible', timeout: 10_000 });
         await this.transactionHistoryMenu.click();
+    }
+
+        async clickOnCashierMenu() {
+        await this.cashierMenu.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierMenu.click();
+    }
+        async clickOnCashierProfileMenu() {
+        await this.cashierProfileMenu.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierProfileMenu.click();
+    }
+
+    async clickOnCashierLogoutLink() {
+        await this.cashierLogoutLink.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierLogoutLink.click();
+    }
+
+    async clickOnLogoutLink() {
+        await this.logoutLink.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.logoutLink.click();
+    }
+
+    async navigateToAccountHoldersPage() {
+        await this.clickOnAccountHolderMenu();
+    }
+
+    async navigateToCashierTransactionReportPage() {
+        await this.clickOnReportMenu();
+        await this.clickOnTransactionHistoryMenu();
         return new CashierTransactionReportPage(this.page);
     }
     async navigateToCashierProfilePage() {
-        await this.cashierMenu.click();
-        await this.cashierProfileMenu.click();
+        await this.clickOnCashierMenu();
+        await this.clickOnCashierProfileMenu();
         return new CashierProfilePage(this.page);
     }
 
     async cashierLogout() {
-        await this.cashierMenu.click();
-        await this.cashierLogoutLink.click();
+        await this.clickOnCashierMenu();
+        await this.clickOnCashierLogoutLink();
     }
 
     async getModalText() {
@@ -52,7 +91,7 @@ export class CashierDashBoardPage extends BasePage {
     }
 
     async clickModalLogoutLink() {
-        await this.logoutLink.click();
+        await this.clickOnLogoutLink();
     }
 
 }

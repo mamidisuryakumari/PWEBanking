@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator,expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 import { TestContext } from './TestContext';
 import { ne, th } from '@faker-js/faker/.';
@@ -16,14 +16,29 @@ export class CashierAccountHoldersPage extends BasePage {
         super(page);
         this.firstAccountNumber = page.locator('table tbody tr:first-child td:nth-child(5)');
         this.firstAccountHolderName = page.locator('table tbody tr:first-child td:nth-child(2)');
-        this.viewLink = page.getByRole('link', {name: 'View'});
+        this.viewLink = page.locator('a').filter({ hasText: 'View ' }); 
         this.searchTextFld = page.locator("input[type = 'search']");
       //  this.nextBtn = page.getByRole('button', { name: 'Next' });  
     }
 
-    async navigateToCashierUserDetailsPage(accountNumber:string){
+    async expectCashierAccountHoldersPageTitle(expectedTitle: string) {
+        await this.page.waitForLoadState('domcontentloaded');
+        await expect(this.page).toHaveTitle(expectedTitle);
+    }
+
+    async enterAccountNumber(accountNumber:string){
+        await this.searchTextFld.waitFor({ state: 'visible', timeout: 10_000 });
         await this.searchTextFld.fill(accountNumber);
+    }
+
+    async clickOnViewLink(){    
+        await this.viewLink.waitFor({ state: 'visible', timeout: 10_000 });
         await this.viewLink.click();
+    }
+
+    async navigateToCashierUserDetailsPage(accountNumber:string){
+        await this.enterAccountNumber(accountNumber);
+        await this.clickOnViewLink();
         return new CashierUserDetailsPage(this.page);
     }
 

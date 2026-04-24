@@ -6,7 +6,7 @@ import { UserRole } from '../pages/Enum';
 import { UserDashBoardPage } from '../pages/UserDashBoardPage';
 
 
-test("User login",async({page})=>{
+test("User login @user",async({page})=>{
     const userLoginpage = new UserLoginPage(page);
     const homePage = new HomePage(page);
     const config = new TestConfig();
@@ -19,7 +19,7 @@ test("User login",async({page})=>{
     await loginPage.expectLoginPageTitle(config.userLoginPageTitle);
     await userLoginpage.userLogin(config.username,
       config.password);
-      await userDashBoardPage.expectUserDashBoardPageTitle(config.userDashBoardPageTitle);
+    await userDashBoardPage.expectUserDashBoardPageTitle(config.userDashBoardPageTitle);
 
 
 });

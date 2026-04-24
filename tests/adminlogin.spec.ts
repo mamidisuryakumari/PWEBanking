@@ -7,33 +7,35 @@ import { UserRole } from '../pages/Enum';
 import fs from 'fs';
 import path from 'path';
 
-test("Admin Login", async ({ page }) => {
+test("Admin Login @admin", async ({ page }) => {
 
     const homePage = new HomePage(page);
     const adminLoginPage = new AdminLoginPage(page);
     const config = new TestConfig();
+    const adminDashboardPage = new AdminDashboardPage(page);
 
     await page.goto(config.baseURL);
-    await expect(page).toHaveTitle(config.homePageTitle);
+    await homePage.expectHomePageTitle(config.homePageTitle);
 
     await homePage.navigateByUserRole(page, UserRole.ADMIN);
-    await expect(page).toHaveTitle(config.adminLoginPageTitle);
+    await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
 
     await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
 
-    await expect(page).toHaveTitle(config.adminDashboardPageTitle);
+    await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
 });
 
 //Reading data from json
 const jsonPath = path.resolve(__dirname, "../test-data/invalidAdmin.json");
 const adminLoginData = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
-test.describe("Admin login with invalid values", () => {
+test.describe("Admin login with invalid values @admin", () => {
 
     test.beforeEach(async ({ page }) => {
         const config = new TestConfig();
+        const homePage = new HomePage(page);
         await page.goto(config.baseURL);
-        await expect(page).toHaveTitle(config.homePageTitle);
+        await homePage.expectHomePageTitle(config.homePageTitle);
     });
     for (const data of adminLoginData) {
         test(data.scenario, async ({ page }) => {
@@ -43,7 +45,7 @@ test.describe("Admin login with invalid values", () => {
 
 
             await homePage.navigateByUserRole(page, UserRole.ADMIN);
-            await expect(page).toHaveTitle(config.adminLoginPageTitle);
+            await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
 
             await adminLoginPage.adminLogin(data.email, data.password);
 

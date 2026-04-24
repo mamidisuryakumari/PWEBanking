@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page ,expect} from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { CashierAccountHoldersPage } from "./CashierAccountHoldersPage";
 import { TransactionTye } from "../enum/StatusEnum";
@@ -11,28 +11,70 @@ export class CashierUserDetailsPage extends BasePage {
     readonly withdrawAmountFld: Locator;
     readonly updateBtnFld: Locator;
     readonly transactionTypeDropdown: Locator;
+    readonly withdrawUpdateBtnFld: Locator;
 
     constructor(page: Page) {
         super(page);
-        this.depositBtn = page.getByRole('button', { name: 'Deposit' });
-        this.withdrawBtn = page.getByRole('button', { name: 'Withdraw' });
+        this.depositBtn = page.locator('button').filter({ hasText: 'Deposit' }).first();
+        this.withdrawBtn = page.locator('button').filter({ hasText: 'Withdraw' }).first();
         this.amountTextFld = page.locator("#myModal input[name='amount']");
-        this.withdrawAmountFld = page.getByPlaceholder('Amount').last();
-        this.updateBtnFld = page.getByRole('button', { name: 'Update' });
+        this.withdrawAmountFld = page.locator("#myModal1 input[name='amount']");
+        this.updateBtnFld = page.locator('button').filter({hasText:'Update'}).first();
+        this.withdrawUpdateBtnFld = page.locator('button').filter({hasText:'Update'}).nth(1);
         this.transactionTypeDropdown = page.locator("select[name='ttype']");
     }
 
-    async amountIsDepositedToUser(depositeAmount: string, cashTransactionType: string) {
+    async expectCashierUserDetailsPageTitle(expectedTitle: string) {
+        await this.page.waitForLoadState('domcontentloaded');
+        await expect(this.page).toHaveTitle(expectedTitle);
+    }
+
+    async clickOnDepositBtn() {
+        await this.depositBtn.waitFor({ state: 'visible', timeout: 10_000 });
         await this.depositBtn.click();
+    }
+
+    async clickOnWithdrawBtn() {
+        await this.withdrawBtn.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.withdrawBtn.click();
+    }
+
+    async enterDepositAmount(depositeAmount: string) {
+        await this.amountTextFld.waitFor({ state: 'visible', timeout: 10_000 });
         await this.amountTextFld.fill(depositeAmount);
+    }
+
+    async enterWithdrawAmount(withdrawAmount: string) {
+        await this.withdrawAmountFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.withdrawAmountFld.fill(withdrawAmount);
+    }
+
+    async selectTransactionType(cashTransactionType: string) {
+        await this.transactionTypeDropdown.waitFor({ state: 'visible', timeout: 10_000 });
         await this.transactionTypeDropdown.selectOption(cashTransactionType);
+    }
+
+    async clickOnUpdateBtn() {
+        await this.updateBtnFld.waitFor({ state: 'visible', timeout: 10_000 });
         await this.updateBtnFld.click();
     }
 
+    async clickOnWithdrawUpdateBtn() {
+        await this.withdrawUpdateBtnFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.withdrawUpdateBtnFld.click();
+    }
+
+    async amountIsDepositedToUser(depositeAmount: string, cashTransactionType: string) {
+        await this.clickOnDepositBtn();
+        await this.enterDepositAmount(depositeAmount);
+        await this.selectTransactionType(cashTransactionType);
+        await this.clickOnUpdateBtn();
+    }
+
     async amountIsWithdrawFromUSerAccount(withdrawAmount: string) {
-        await this.withdrawBtn.click();
-        await this.withdrawAmountFld.fill(withdrawAmount);
-        await this.updateBtnFld.click();
+        await this.clickOnWithdrawBtn();
+        await this.enterWithdrawAmount(withdrawAmount);
+        await this.clickOnWithdrawUpdateBtn();
     }
 
     async calculateUserAccountBalance() {

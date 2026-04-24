@@ -11,12 +11,14 @@ import path from 'path';
 const jsonPath = path.resolve(__dirname,"../test-data/invaliduserregistration.json");
 const registrationData: any = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
-test.describe("User Registration with invalid values", () => {
+test.describe("User Registration with invalid values @user", () => {
 
     test.beforeEach(async ({ page }) => {
         const config = new TestConfig();
+        const  homePage = new HomePage(page);
+       
         await page.goto(config.baseURL);
-        await expect(page).toHaveTitle(config.homePageTitle);
+        await homePage.expectHomePageTitle(config.homePageTitle);
     });
 
     for (const data of registrationData) {
@@ -27,7 +29,7 @@ test.describe("User Registration with invalid values", () => {
             const config = new TestConfig();
 
             await homePage.navigateByUserRole(page, UserRole.USER);
-            await expect(page).toHaveTitle(config.userLoginPageTitle);
+            await userLoginPage.expectLoginPageTitle(config.userLoginPageTitle);
             await userLoginPage.clickCreateAccountLink();
 
             await userRegistrationPage.userRegistration(
@@ -37,6 +39,7 @@ test.describe("User Registration with invalid values", () => {
                 data.userMobileNumber,
                 data.userPassword
             );
+            
             //validation for required fields
             let fieldLocator;
             switch (data.field) {

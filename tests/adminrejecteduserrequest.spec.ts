@@ -14,7 +14,7 @@ import { CommonUtils } from '../utils/CommonUtils';
 import { AdminNewAccountOpeningRequestPage } from '../pages/admin/AdminNewAccontOpeningRequestPage';
 
 
-test("Admin reject user Request", async ({ page }) => {
+test("Admin reject user Request @admin", async ({ page }) => {
 
     const homePage = new HomePage(page);
     const adminLoginPage = new AdminLoginPage(page);
@@ -65,6 +65,7 @@ test("Admin reject user Request", async ({ page }) => {
 
     //user account open
     await userAccountPage.userAccountOpen(
+        config.selectAadhaarCard,
         config.userAddressProofIdNumber,
         config.userAadhaarCardPath,
         config.userPanCardPath,
@@ -78,13 +79,12 @@ test("Admin reject user Request", async ({ page }) => {
 
     //navigate to admin login page
     await page.goto(config.adminLoginPageURL);
-    await expect(page).toHaveTitle(config.adminLoginPageTitle);
     await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
-    await expect(page).toHaveTitle(config.adminDashboardPageTitle);
+    await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
     await adminDashboardPage.navigateToNewAccountOpeningRequestsPage();
-    await expect(page).toHaveTitle(config.adminNewAccountOpeningRequestPageTitle);
+    await adminNewAccountOpeningRequestPage.expectAdminNewAccountOpeningRequestPageTitle(config.adminNewAccountOpeningRequestPageTitle);
     await adminNewAccountOpeningRequestPage.searchUserAccount();
-    await expect(page).toHaveTitle(config.adminAccountHolderDetailsPageTitle);
+    await adminAccountHolderDetailsPage.expectAdminAccountHolderDetailsPageTitle(config.adminAccountHolderDetailsPageTitle);
 
     page.on('dialog', async (dialog) => {
         const message = dialog.message();

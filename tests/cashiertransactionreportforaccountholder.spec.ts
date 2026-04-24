@@ -6,7 +6,7 @@ import { UserRole } from '../pages/Enum';
 import { CashierDashBoardPage } from '../pages/CashierDashBoardPage';
 import { CashierTransactionReportPage } from '../pages/CashierTransactionReportPage';
 
-test('Cashier Transaction Report Between Dates for Account Holder', async ({page}) => {
+test('Cashier Transaction Report Between Dates for Account Holder @cashier', async ({page}) => {
      const homePage = new HomePage(page);
       const cashierLoginPage = new CashhierLoginPage(page);
       const config = new TestConfig();
@@ -25,8 +25,10 @@ test('Cashier Transaction Report Between Dates for Account Holder', async ({page
       await cashierTransactionReportPage.transactionReports(
         config.fromDate,config.toDate,config.selectAccountHolderName);
 
-        const text = await cashierTransactionReportPage.getTransactionHistoryText()
 
-      await expect(text).toContain(config.transactionHistorySuccessMsg);
+
+        await cashierTransactionReportPage.expectTransactionHistoryText(config.transactionHistorySuccessMsg);
+
+      
 
 });

@@ -6,7 +6,7 @@ import { HomePage } from '../pages/HomePage';
 import { CashhierLoginPage } from '../pages/CashierLoginPage';
 import { CashierDashBoardPage } from '../pages/CashierDashBoardPage';
 
-test('Cashier logout', async ({ page }) => {
+test('Cashier logout @cashier', async ({ page }) => {
 
     const homePage = new HomePage(page);
     const cashierLoginPage = new CashhierLoginPage(page);

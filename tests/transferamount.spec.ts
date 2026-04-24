@@ -14,7 +14,7 @@ import { UserManagePayeePage } from '../pages/UserManagePayeePage';
 import { UserTransferAmountPage } from '../pages/UserTransferAmountPage';
 
 
-test("Transfer amount to payee",async({page}) =>{
+test("Transfer amount to payee @user",async({page}) =>{
 
    const testContext = new TestContext();
   const homePage = new HomePage(page);
@@ -33,19 +33,19 @@ test("Transfer amount to payee",async({page}) =>{
   await homePage.navigateByUserRole(page, UserRole.CASHIER);
   await cashierLoginPage.cashierLogin(config.cashierEmail,
     config.cashierPassword);
-  await expect(page).toHaveTitle(config.cashierDashBoardPageTitle);
+  await cashierDashBoardPage.expectCashierDashBoardPageTitle(config.cashierDashBoardPageTitle);
   await cashierDashBoardPage.navigateToAccountHoldersPage();
-  await expect(page).toHaveTitle(config.cashierAccountHoldersPageTitle);
+  await cashierAccountHoldersPage.expectCashierAccountHoldersPageTitle(config.cashierAccountHoldersPageTitle);
   //capture account holder details
   const accountHolderList: any = await cashierAccountHoldersPage.getAllAccountHolders();
   console.log("Total account holders fetched:", accountHolderList.length);
 
   //user login 
   await page.goto(config.userLoginPageURL);
-  await expect(page).toHaveTitle(config.userLoginPageTitle);
+  await userDashBoardPage.expectUserDashBoardPageTitle(config.userLoginPageTitle);
   await userLoginpage.userLogin(config.username,
     config.password);
-  await expect(page).toHaveTitle(config.userDashBoardPageTitle);
+  await userDashBoardPage.expectUserDashBoardPageTitle(config.userDashBoardPageTitle);
   await userDashBoardPage.navigateToManagePayeePage();
   //existing payee account numbers
   const existingPayeesList = await userManagePayeePage.getAllExistingPayeeAccountNumbers();

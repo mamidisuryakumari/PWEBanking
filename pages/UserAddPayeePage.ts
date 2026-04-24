@@ -18,6 +18,11 @@ export class UserAddPayeePage extends BasePage {
         this.submitBtn = page.locator('button').filter({ hasText: 'Submit' });
     }
 
+    async expectUserAddPayeePageTitle(expectedTitle: string) {
+        await this.page.waitForLoadState('domcontentloaded');
+        await expect(this.page).toHaveTitle(expectedTitle);
+    }
+    
     async enterAccountNumber(accountNumber: string) {
         await this.accountNumberTextFld.waitFor({ state: 'visible', timeout: 10_000 });
         await this.accountNumberTextFld.fill(accountNumber);

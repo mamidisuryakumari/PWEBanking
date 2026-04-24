@@ -9,7 +9,7 @@ import { CashierAccountHoldersPage } from '../pages/CashierAccountHoldersPage';
 import { TestContext } from '../pages/TestContext';
 
 
-test('Cashier deposits amount to the user account', async ({ page }) => {
+test('Cashier deposits amount to the user account @cashier', async ({ page }) => {
   const config = new TestConfig();
   const testContext = new TestContext();
   const homePage = new HomePage(page);
@@ -53,7 +53,7 @@ test('Cashier deposits amount to the user account', async ({ page }) => {
   await expect(updatedBalance).toBe(previousBalance + depositAmount);
 });
 
-test('Cashier withdraw amount from the user account', async ({ page }) => {
+test('Cashier withdraw amount from the user account @cashier', async ({ page }) => {
   const config = new TestConfig();
   const testContext = new TestContext();
   const homePage = new HomePage(page);

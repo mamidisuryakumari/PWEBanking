@@ -11,7 +11,7 @@ import { UserRole } from '../pages/Enum';
 
 
 
-test("User Registration", async ({ page }) => {
+test("User Registration @user", async ({ page }) => {
 
   const homePage = new HomePage(page);
   const userLoginPage = new UserLoginPage(page);
@@ -51,7 +51,7 @@ test("User Registration", async ({ page }) => {
 
 
   await CommonUtils.acceptAlert(page);
-  await expect(page).toHaveTitle(config.userLoginPageTitle);
+  await userLoginPage.expectLoginPageTitle(config.userLoginPageTitle);
 
 
   userLoginPage.userLogin(testContext.email, testContext.password);

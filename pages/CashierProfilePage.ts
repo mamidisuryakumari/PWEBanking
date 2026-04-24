@@ -15,14 +15,34 @@ export class CashierProfilePage extends BasePage {
         this.cashierFirstNameTextFld = page.locator('input[name="fname"]');
         this.cashierLastNameTextFld = page.locator('input[name="lname"]');
         this.cashierAddressTextFld = page.locator('input[name="address"]');
-        this.cashierUpdateBtn = page.getByRole("button", { name: 'Update' });
+        this.cashierUpdateBtn = page.locator('button').filter({ hasText: 'Update' });
+    }
+
+    async enterCashierFirstName(cashierFirstName: string) {
+        await this.cashierFirstNameTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierFirstNameTextFld.fill(cashierFirstName);
+    }
+
+    async enterCashierLastName(cashierLastName: string) {
+        await this.cashierLastNameTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierLastNameTextFld.fill(cashierLastName);
+    }
+
+    async enterCashierAddress(cashierAddress: string) {
+        await this.cashierAddressTextFld.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierAddressTextFld.fill(cashierAddress);
+    }
+
+        async clickOnCashierUpdateBtn() {   
+        await this.cashierUpdateBtn.waitFor({ state: 'visible', timeout: 10_000 });
+        await this.cashierUpdateBtn.click();
     }
 
     async cashierProfileUpdate(cashierFirstName: string, cashierLastName: string, cashierAddress: string) {
-        await this.cashierFirstNameTextFld.fill(cashierFirstName);
-        await this.cashierLastNameTextFld.fill(cashierLastName);
-        await this.cashierAddressTextFld.fill(cashierAddress);
-        await this.cashierUpdateBtn.click();
+        await this.enterCashierFirstName(cashierFirstName);
+        await this.enterCashierLastName(cashierLastName);
+        await this.enterCashierAddress(cashierAddress);
+        await this.clickOnCashierUpdateBtn();
         return this;
     }
 }

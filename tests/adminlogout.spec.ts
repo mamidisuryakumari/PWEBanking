@@ -7,7 +7,7 @@ import { TestConfig } from '../test.config';
 import { UserRole } from '../pages/Enum';
 
 
-test('Admin logout', async ({ page }) => {
+test('Admin logout @admin', async ({ page }) => {
 
     const homePage = new HomePage(page);
     const adminLoginPage = new AdminLoginPage(page);
@@ -15,12 +15,12 @@ test('Admin logout', async ({ page }) => {
     const adminDashboardPage = new AdminDashboardPage(page);
 
     await page.goto(config.baseURL);
+    await homePage.expectHomePageTitle(config.homePageTitle);
     await homePage.navigateByUserRole(page, UserRole.ADMIN);
-    await expect(page).toHaveTitle(config.adminLoginPageTitle);
 
     //admin login
     await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
-    await expect(page).toHaveTitle(config.cashierDashBoardPageTitle);
+    await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
 
     //admin logout
     await adminDashboardPage.adminLogout();
@@ -28,6 +28,6 @@ test('Admin logout', async ({ page }) => {
   expect(modalText).toContain(config.userLogoutMsg);
 
   await adminDashboardPage.clickModalLogoutLink();
-    await expect(page).toHaveTitle(config.adminLoginPageTitle);
+    await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
 
 });

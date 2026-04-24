@@ -1,5 +1,5 @@
 import { BasePage } from "./BasePage";
-import { Page } from '@playwright/test';
+import { Page,expect } from '@playwright/test';
 
 export class CashhierLoginPage extends BasePage {
 
@@ -11,6 +11,11 @@ export class CashhierLoginPage extends BasePage {
         this.cashierEmailFld = page.locator("#empid");
         this.cashierPasswordFld = page.locator("#password");
         this.loginBtn = page.locator('button').filter({hasText:'Login'});
+    }
+
+    async expectLoginPageTitle(expectedTitle: string) {
+        await this.page.waitForLoadState('domcontentloaded');
+        await expect(this.page).toHaveTitle(expectedTitle);
     }
 
     async enterCashierEmail(cashierEmail:string){   

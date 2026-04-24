@@ -11,21 +11,22 @@ const jsonPath = path.resolve(__dirname, "../test-data/invalidAdmin.json");
 //const jsonPath = "test-data/invalidusers.json";
 const loginData: any = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
-test.describe("User login with invalid values", () => {
+test.describe("User login with invalid values @user", () => {
 
   test.beforeEach(async ({ page }) => {
     const config = new TestConfig();
     await page.goto(config.baseURL);
     await expect(page).toHaveTitle(config.homePageTitle);
   });
+
   for (const data of loginData) {
-    test(data.scenario, async ({ page }) => {
+    test(data.scenario , async ({ page }) => {
       const userLoginpage = new UserLoginPage(page);
       const homePage = new HomePage(page);
       const config = new TestConfig();
 
       await homePage.navigateByUserRole(page, UserRole.USER);
-      await expect(page).toHaveTitle(config.userLoginPageTitle);
+      await userLoginpage.expectLoginPageTitle(config.userLoginPageTitle);
 
       await userLoginpage.userLogin(data.email, data.password);
 

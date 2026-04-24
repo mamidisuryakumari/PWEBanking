@@ -33,9 +33,8 @@ export class UserDashBoardPage extends BasePage {
     this.logoutLink1 = page.locator('a').filter({ hasText: 'Logout' }).last();
     this.changePasswordLink = page.locator('a').filter({ hasText: 'Change Password' });
     this.managePayeeMenu = page.locator('a').filter({ hasText: 'Manage' });
-    this.modalTextMsg = page.getByText('Select "Logout" below if you are ready to end your current session.');
-   
-  }
+    this.modalTextMsg = page.locator("div[class='modal-body']");
+   }
 
   async expectUserDashBoardPageTitle(expectedTitle: string) {
     await this.page.waitForLoadState('domcontentloaded');
@@ -60,7 +59,7 @@ export class UserDashBoardPage extends BasePage {
 
   async expectNewUserText(expectedText: string) {
     await this.newUserText.waitFor({ state: 'visible', timeout: 10_000 });
-    await expect(this.newUserText).toContainText(expectedText);
+    await expect(this.newUserText).toHaveText(expectedText);
   }
 
   async getNewUserAccountText() {
@@ -85,6 +84,10 @@ export class UserDashBoardPage extends BasePage {
     return new UserManagePayeePage(this.page);
   }
 
+  async expectLogoutModalText(expectedText: string) {
+    await this.modalTextMsg.waitFor({ state: 'visible', timeout: 10_000 });
+    await expect(this.modalTextMsg).toHaveText(expectedText);
+  }
   async getModalText() {
     const message = await this.modalTextMsg.textContent();
     return message;
