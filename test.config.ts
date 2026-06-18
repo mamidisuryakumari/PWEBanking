@@ -59,6 +59,7 @@ export class TestConfig {
   //Admin
 
   adminLoginPageURL = "http://localhost/bankms/admin/login.php";
+  adminDashBoardPageURL = "http://localhost/bankms/admin/dashboard.php";
 
   adminRole = "admin";
   adminEmail = "admin@gmail.com";

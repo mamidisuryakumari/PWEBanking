@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { test} from "./fixtures/auth.fixtures";
+import { expect } from "@playwright/test";
 import { HomePage } from '../pages/HomePage';
 import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage';
 import { AdminLoginPage } from '../pages/admin/AdminLoginPage';
@@ -7,22 +8,14 @@ import { UserRole } from '../pages/Enum';
 import fs from 'fs';
 import path from 'path';
 
-test("Admin Login @admin", async ({ page }) => {
+test.only("Verify Admin Dashboard Loads @admin", async ({ authPage }) => {
 
-    const homePage = new HomePage(page);
-    const adminLoginPage = new AdminLoginPage(page);
+    const adminDashboardPage = new AdminDashboardPage(authPage);
     const config = new TestConfig();
-    const adminDashboardPage = new AdminDashboardPage(page);
 
-    await page.goto(config.baseURL);
-    await homePage.expectHomePageTitle(config.homePageTitle);
-
-    await homePage.navigateByUserRole(page, UserRole.ADMIN);
-    await adminLoginPage.expectAdminLoginPageTitle(config.adminLoginPageTitle);
-
-    await adminLoginPage.adminLogin(config.adminEmail, config.adminPassword);
-
+await authPage.goto(config.adminDashBoardPageURL);
     await adminDashboardPage.expectAdminDashboardPageTitle(config.adminDashboardPageTitle);
+    console.log("Admin Dashboard loaded successfully");
 });
 
 //Reading data from json

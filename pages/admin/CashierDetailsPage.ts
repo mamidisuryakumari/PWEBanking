@@ -34,8 +34,12 @@ export class CashierDetailsPage extends BasePage {
         await this.cashierEditLink.click();
     }
 
-    async deleteEmployeeId(cashierEmployeeId: string) {
+    async searchEmployeeId(cashierEmployeeId: string) {
         await this.enterCashierEmployeeId(cashierEmployeeId);
+        return this;
+    }
+
+    async deleteEmployeeId() {
         await this.clickOnCashierDelete();
         return this;
     }

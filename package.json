@@ -21,6 +21,7 @@
   "dependencies": {
     "@faker-js/faker": "^10.3.0",
     "csv": "^6.4.1",
+    "dotenv": "^16.0.4",
     "xlsx": "^0.18.5"
   },
   "directories": {

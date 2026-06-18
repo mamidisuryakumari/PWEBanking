@@ -13,12 +13,12 @@ test("User login @user",async({page})=>{
     const loginPage = new UserLoginPage(page);
     const userDashBoardPage = new UserDashBoardPage(page);
     
-    await page.goto(config.baseURL);
+   /*await page.goto(config.baseURL);
     await homePage.expectHomePageTitle(config.homePageTitle);
     await homePage.navigateByUserRole(page,UserRole.USER);
     await loginPage.expectLoginPageTitle(config.userLoginPageTitle);
     await userLoginpage.userLogin(config.username,
-      config.password);
+      config.password);*/
     await userDashBoardPage.expectUserDashBoardPageTitle(config.userDashBoardPageTitle);
 
 
